@@ -1,0 +1,22 @@
+<h1>Listing gifts</h1>
+
+<%= link_to "wishlist home", controller: :lists, action: :index %>
+<br>
+<%= link_to "new gifts", action: :new %>
+<br><br>
+
+<table>
+   <tr>
+      <th>status</th>
+      <th>description</th>
+      <th>link</th>
+   </tr>
+
+   <% @gifts.each do |post| %>
+      <tr>
+         <td><%= post.status %></td>
+         <td><%= post.description %></td>
+         <td><%= post.link %></td>
+      </tr>
+   <% end %>
+</table>
