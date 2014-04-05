@@ -1,0 +1,24 @@
+<%= link_to "users", action: :index %>
+
+<p>
+<strong>username:</strong>
+<%= @user.username %>
+</p>
+
+<p>
+<strong>name:</strong>
+<%= @user.name %>
+</p>
+
+<p>
+<strong>lists:</strong>
+<br>
+<% @lists.each do |list| %>
+   <%= list.name %>
+   <%= link_to "Add", new_gift_path(:list_id => list.id) %><br>
+   <% @gifts[list.id].each do | gift | %>
+      <%= gift.description %><br>
+   <% end %>
+   <br>
+<% end %>
+</p>

@@ -12,11 +12,13 @@
       <th>link</th>
    </tr>
 
-   <% @gifts.each do |post| %>
+   <% @gifts.each do |gift| %>
       <tr>
-         <td><%= post.status %></td>
-         <td><%= post.description %></td>
-         <td><%= post.link %></td>
+         <td><%= gift.status %></td>
+         <td><%= gift.description %></td>
+         <td><%= gift.link %></td>
+         <td><%= link_to 'Show', gift %></td>
+         <td><%= link_to 'Edit', edit_gift_path(gift) %></td>
       </tr>
    <% end %>
 </table>
