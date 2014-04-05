@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   end
 
    def show
-      puts :id
+      session[:view_id] = params[:id]
       @user = User.find(params[:id])
       @lists = @user.lists
       @gifts = []
