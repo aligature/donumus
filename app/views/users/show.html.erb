@@ -1,4 +1,5 @@
-<%= link_to "users", action: :index %>
+<% view_family = Family.view_family(session) %>
+<%= link_to "back to " + view_family.name, family_path(view_family) %>
 
 <p>
 <strong>username:</strong>
@@ -16,9 +17,7 @@
 <% @lists.each do |list| %>
    <%= list.name %>
    <%= link_to "Add", new_gift_path(:list_id => list.id) %><br>
-   <% @gifts[list.id].each do | gift | %>
-      <%= gift.description %><br>
-   <% end %>
+   <%= render @gifts[list.id] %>
    <br>
 <% end %>
 </p>

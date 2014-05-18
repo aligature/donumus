@@ -1,4 +1,9 @@
-<%= form_for :post, url: _target, method: _method do |f| %>
+<% view_user = User.view_user(session) %>
+<%= link_to "back to " + view_user.name, user_path(view_user) %>
+
+<%= form_for @gift do |f| %>
+   <%= f.hidden_field :list_id, :value => @gift.list_id %>
+
    <p>
    <%= f.label :status %><br>
    <%= f.text_field :status %>

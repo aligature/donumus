@@ -1,16 +1,4 @@
-<%= link_to User.find(session[:view_id]).name, user_path(session[:view_id]) %>
+<% view_user = User.view_user(session) %>
+<%= link_to view_user.name, user_path(user) %>
 
-<p>
-<strong>status:</strong>
-<%= @gift.status %>
-</p>
-
-<p>
-<strong>description:</strong>
-<%= @gift.description %>
-</p>
-
-<p>
-<strong>link:</strong>
-<%= @gift.link %>
-</p>
+<%= render @gift %>

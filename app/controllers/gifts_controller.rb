@@ -1,14 +1,11 @@
 class GiftsController < ApplicationController
    def new
-      #@gift = Gift.new(:list_id => params[:list_id])
-      session[:list_id] = params[:list_id]
+      @gift = Gift.new(:list_id => params[:list_id])
    end
 
    def create
-      @gift = Gift.new(gift_params)
-      @gift.list_id = session[:list_id]
-      if @gift.save
-         redirect_to @gift
+      if @gift = Gift.create(gift_params)
+         redirect_to User.view_user(session)
       else
          render :new
       end
@@ -24,14 +21,14 @@ class GiftsController < ApplicationController
    end
 
    def edit
-        @gift = Gift.find(params[:id])
+      @gift = Gift.find(params[:id])
    end
 
    def update
       @gift = Gift.find(params[:id])
 
       if @gift.update(gift_params)
-         redirect_to @gift
+         redirect_to User.view_user(session)
       else
          render 'edit'
       end
@@ -39,6 +36,6 @@ class GiftsController < ApplicationController
 
    private
    def gift_params
-      params.require(:post).permit(:status, :description, :link)
+      params.require(:gift).permit(:status, :description, :link, :list_id)
    end
 end

@@ -1,0 +1,11 @@
+<%= link_to "my families", action: :index %>
+
+<p>
+<strong>family:</strong>
+<%= @family.name %>
+</p>
+
+<p>
+<strong>users:</strong><br>
+<%= render @family.users %>
+</p>

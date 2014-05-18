@@ -1,0 +1,10 @@
+<h1>wishlist!</h1>
+
+<h2>user:
+<%= @user.name %>
+</h2>
+
+<h2>families:</h2>
+<% @families.each do |family| %>
+   <%= link_to family.name, family_path(family.id) %><br>
+<% end %>

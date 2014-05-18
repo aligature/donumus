@@ -1,5 +1,3 @@
 <h1>edit gift</h1>
 
-<%= link_to "gifts list", action: :index %>
-
 <%= render partial: 'form', locals: {_target: gift_url(@gift), _method: :patch} %>
