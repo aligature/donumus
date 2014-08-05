@@ -8,6 +8,11 @@
 </head>
 <body>
 
+<% if current_user %>
+   <%= current_user.email %>
+   <%= link_to "Log out", users_sign_out_path, method: :delete %>
+<% end %>
+
 <%= yield %>
 
 </body>

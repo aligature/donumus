@@ -1,8 +1,18 @@
 Wishlist::Application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+
+  devise_scope :user do
+     get 'sign_in', :to => 'devise/sessions#new', :as => :new_user_session
+     delete 'users/sign_out' => 'devise/sessions#destroy'
+  end
+
   #get "users/index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
+  get 'families/missing' => 'family#missing'
   resources :families
   resources :users
   resources :gifts
