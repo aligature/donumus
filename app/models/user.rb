@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :rememberable, :trackable, :validatable, :omniauthable
-     #:database_authenticatable, :registerable, :recoverable,
+  devise :rememberable, :trackable, :omniauthable
+     #:database_authenticatable, :registerable, :recoverable, :validatable,
 
 
    #attr_accessible :email, :provider, :uid
@@ -24,5 +24,25 @@ class User < ActiveRecord::Base
       data = access_token.info
       user = User.where(:username => data["email"]).first
       return user
+   end
+
+   def display_name
+      "#{name} (#{username})"
+   end
+
+   def email_required?
+      false
+   end
+
+   def email_changed?
+      false
+   end
+
+   def password_required?
+      false
+   end
+
+   def password_match?
+      true
    end
 end

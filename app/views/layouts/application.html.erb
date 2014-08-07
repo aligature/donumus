@@ -9,8 +9,9 @@
 <body>
 
 <% if current_user %>
-   <%= current_user.email %>
+   <%= current_user.username %>
    <%= link_to "Log out", users_sign_out_path, method: :delete %>
+   <br><br>
 <% end %>
 
 <%= yield %>

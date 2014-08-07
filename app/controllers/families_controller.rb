@@ -3,7 +3,9 @@ class FamiliesController < ApplicationController
       # replace with login
       if current_user
          @user = current_user
+         puts @user
          @families = @user.families()
+         puts @families
       end
    end
 
