@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140807013605) do
+ActiveRecord::Schema.define(version: 20140809192010) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_info_id"
@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 20140807013605) do
     t.datetime "updated_at"
   end
 
+  add_index "family_users", ["family_id", "user_id"], name: "index_family_users_on_family_id_and_user_id", unique: true
+
   create_table "gifts", force: true do |t|
     t.string   "status"
     t.string   "description"
@@ -58,11 +60,15 @@ ActiveRecord::Schema.define(version: 20140807013605) do
     t.datetime "updated_at"
   end
 
+  add_index "list_users", ["list_id", "user_id"], name: "index_list_users_on_list_id_and_user_id", unique: true
+
   create_table "lists", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "lists", ["name"], name: "index_lists_on_name", unique: true
 
   create_table "phone_numbers", force: true do |t|
     t.integer  "user_info_id"
@@ -93,6 +99,9 @@ ActiveRecord::Schema.define(version: 20140807013605) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.boolean  "administrator"
+    t.date     "birthday"
   end
+
+  add_index "users", ["username"], name: "index_users_on_username", unique: true
 
 end
