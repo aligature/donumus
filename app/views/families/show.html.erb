@@ -7,5 +7,5 @@
 
 <p>
 <strong>users:</strong><br>
-<%= render @family.users %>
+<%= render @family.users.order(:birthday) %>
 </p>
