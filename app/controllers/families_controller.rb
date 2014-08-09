@@ -1,10 +1,11 @@
 class FamiliesController < ApplicationController
+
    def index
       # replace with login
       if current_user
          @user = current_user
          puts @user
-         @families = @user.families()
+         @families = @user.families().order(:name)
          puts @families
       end
    end
@@ -14,7 +15,4 @@ class FamiliesController < ApplicationController
       @family.save_as_view(session)
    end
 
-   def missing
-      puts "IN MISSING"
-   end
 end
