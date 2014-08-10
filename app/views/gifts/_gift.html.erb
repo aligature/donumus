@@ -1,5 +1,6 @@
+<%= link_to "add status", new_status_path(:gift_id => gift.id) %>
 <%= link_to "edit", edit_gift_path(gift.id) %>
-<%= gift.status %>
+<%= gift.status_summary %>
 <%= gift.description %>
 <%= gift.link %>
 <br>

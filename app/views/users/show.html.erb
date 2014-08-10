@@ -1,10 +1,6 @@
 <% view_family = Family.view_family(session) %>
 <%= link_to "back to " + view_family.name, family_path(view_family) %>
-
-<p>
-<strong>username:</strong>
-<%= @user.username %>
-</p>
+<br><br>
 
 <p>
 <strong>name:</strong>
@@ -12,10 +8,15 @@
 </p>
 
 <p>
+<strong>info:</strong>
+<%= link_to "info", user_info_path(@user) %>
+</p>
+
+<p>
 <strong>lists:</strong>
 <br>
 <% @lists.each do |list| %>
-   <%= list.name %>
+   <%= list.name == @user.name ? "personal" : list.name %>
    <%= link_to "Add", new_gift_path(:list_id => list.id) %><br>
    <%= render @gifts[list.id] %>
    <br>

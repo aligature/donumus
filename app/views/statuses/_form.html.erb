@@ -1,0 +1,27 @@
+<% view_user = User.view_user(session) %>
+<%= link_to "back to " + view_user.name, user_path(view_user) %>
+<br><br>
+
+<strong>user:</strong>
+<%= view_user.name %>
+
+<strong>gift:</strong>
+<%= Gift.find(@status.gift_id).description %>
+
+<%= form_for @status do |f| %>
+   <%= f.hidden_field :gift_id, :value => @status.gift_id %>
+
+   <p>
+   <%= f.label :status %><br>
+   <%= f.text_field :status %>
+   </p>
+
+   <p>
+   <%= f.label :note %><br>
+   <%= f.text_field :note %>
+   </p>
+
+   <p>
+   <%= f.submit %>
+   </p>
+<% end %>

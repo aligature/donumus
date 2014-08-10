@@ -1,0 +1,33 @@
+<strong>name:</strong>
+<%= link_to @user.name, user_path(@user) %>
+<br>
+<br>
+
+<strong>note:</strong>
+<%= @note %>
+<br>
+<br>
+
+<strong>e-mail:</strong>
+<br>
+<% @emails.each do |email| %>
+   <%= email.label? ? "%s: %s" % [email.label, email.to_s] : email.to_s %>
+   <br>
+<% end %>
+<br>
+
+<strong>phone:</strong>
+<br>
+<% @phone_numbers.each do |phone| %>
+   <%= phone.label? ? "%s: %s" % [phone.label, phone.to_s] : phone.to_s %>
+   <br>
+<% end %>
+<br>
+
+<strong>address:</strong>
+<br>
+<% @addresses.each do |address| %>
+   <%= address.label? ? "%s: %s" % [address.label, address.to_s] : address.to_s %>
+   <br>
+<% end %>
+<br>

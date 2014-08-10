@@ -12,7 +12,6 @@ class GiftsController < ApplicationController
    end
 
    def show
-      puts :id
       @gift = Gift.find(params[:id])
    end
 
@@ -36,6 +35,6 @@ class GiftsController < ApplicationController
 
    private
    def gift_params
-      params.require(:gift).permit(:status, :description, :link, :list_id)
+      params.require(:gift).permit(:description, :link, :list_id, :added_by_user_id)
    end
 end

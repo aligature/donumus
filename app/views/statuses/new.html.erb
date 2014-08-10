@@ -1,0 +1,14 @@
+<h1>new status</h1>
+
+<% if @status and @status.errors.any? %>
+   <div id="error_explanation">
+      <h2><%= pluralize(@status.errors.count, "error") %> prohibited this status from being saved:</h2>
+      <ul>
+         <% @status.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+         <% end %>
+      </ul>
+   </div>
+<% end %>
+
+<%= render partial: 'form', locals: {_target: statuses_path, _method: :post} %>

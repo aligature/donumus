@@ -4,15 +4,14 @@ class FamiliesController < ApplicationController
       # replace with login
       if current_user
          @user = current_user
-         puts @user
          @families = @user.families().order(:name)
-         puts @families
       end
    end
 
    def show
       @family = Family.find(params[:id])
       @family.save_as_view(session)
+      @members = @family.users.order(:birthday)
    end
 
 end

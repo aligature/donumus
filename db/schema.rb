@@ -11,20 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140809192010) do
+ActiveRecord::Schema.define(version: 20140810203159) do
 
   create_table "addresses", force: true do |t|
-    t.integer  "user_info_id"
     t.string   "address"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.string   "label"
   end
 
   create_table "emails", force: true do |t|
-    t.integer  "user_info_id"
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.string   "label"
   end
 
   create_table "families", force: true do |t|
@@ -43,12 +45,12 @@ ActiveRecord::Schema.define(version: 20140809192010) do
   add_index "family_users", ["family_id", "user_id"], name: "index_family_users_on_family_id_and_user_id", unique: true
 
   create_table "gifts", force: true do |t|
-    t.string   "status"
     t.string   "description"
     t.string   "link"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "list_id"
+    t.integer  "added_by_user_id"
   end
 
   add_index "gifts", ["list_id"], name: "index_gifts_on_list_id"
@@ -71,21 +73,25 @@ ActiveRecord::Schema.define(version: 20140809192010) do
   add_index "lists", ["name"], name: "index_lists_on_name", unique: true
 
   create_table "phone_numbers", force: true do |t|
-    t.integer  "user_info_id"
     t.integer  "phone_number"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.string   "label"
   end
 
-  create_table "user_infos", force: true do |t|
-    t.integer  "user_id"
+  create_table "statuses", force: true do |t|
+    t.integer  "gift_id"
+    t.integer  "added_by_user_id"
+    t.integer  "status"
+    t.string   "note"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "user_notes", force: true do |t|
-    t.integer "user_info_id"
     t.string  "notes"
+    t.integer "user_id"
   end
 
   create_table "users", force: true do |t|

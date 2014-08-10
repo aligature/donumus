@@ -16,6 +16,8 @@ Wishlist::Application.routes.draw do
   resources :families
   resources :users
   resources :gifts
+  resources :user_info
+  resources :statuses
 
   # You can have the root of your site routed with "root"
   root 'families#index'
