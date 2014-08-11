@@ -10,4 +10,8 @@ class Gift < ActiveRecord::Base
       Status.summary(self.statuses)
    end
 
+   def to_s
+      "%d: %s" % [self.id, self.description]
+   end
+
 end
