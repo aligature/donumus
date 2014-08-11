@@ -1,9 +1,11 @@
 class StatusesController < ApplicationController
    def new
+      @statuses = Status.statuses
       @status = Status.new(:gift_id => params[:gift_id])
    end
 
    def create
+      @statuses = Status.statuses
       if @status = Status.create(status_params)
          redirect_to User.view_user(session)
       else
@@ -16,10 +18,12 @@ class StatusesController < ApplicationController
    end
 
    def edit
+      @statuses = Status.statuses
       @status = Status.find(params[:id])
    end
 
    def update
+      @statuses = Status.statuses
       @status = Status.find(params[:id])
 
       if @status.update(status_params)
