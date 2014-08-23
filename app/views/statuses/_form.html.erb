@@ -10,6 +10,7 @@
 
 <%= form_for @status do |f| %>
    <%= f.hidden_field :gift_id, :value => @status.gift_id %>
+   <%= f.hidden_field :added_by_user_id, :value => current_user.id %>
 
    <p>
    <%= f.label :status %><br>

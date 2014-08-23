@@ -4,6 +4,10 @@ class StatusesController < ApplicationController
       @status = Status.new(:gift_id => params[:gift_id])
    end
 
+   def index
+      @statuses = Gift.find(params[:gift_id]).statuses
+   end
+
    def create
       @statuses = Status.statuses
       if @status = Status.create(status_params)

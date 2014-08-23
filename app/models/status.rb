@@ -1,5 +1,7 @@
 class Status < ActiveRecord::Base
    belongs_to :gift
+   belongs_to :added_by_user, class_name: "User",
+                              foreign_key: "added_by_user_id"
 
    enum status: { available: 0, looking: 10, partially_gone: 20, gone: 30}
 
