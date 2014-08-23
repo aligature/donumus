@@ -6,12 +6,15 @@
 <br><br>
 
 <table>
+   <thead>
    <tr>
       <th>status</th>
       <th>description</th>
       <th>link</th>
    </tr>
+   </thead>
 
+   <tbody>
    <% @gifts.each do |gift| %>
       <tr>
          <td><%= gift.status %></td>
@@ -21,4 +24,5 @@
          <td><%= link_to 'Edit', edit_gift_path(gift) %></td>
       </tr>
    <% end %>
+   </tbody>
 </table>

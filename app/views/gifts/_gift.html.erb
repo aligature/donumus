@@ -1,6 +1,14 @@
-<%= link_to "add status", new_status_path(:gift_id => gift.id) %>
-<%= link_to "edit", edit_gift_path(gift.id) %>
-<%= gift.status_summary %>
-<%= gift.description %>
-<%= gift.link %>
-<br>
+<tr>
+   <td>
+      <%= link_to "view status", statuses_path(:gift_id => gift.id) %>
+      <%= link_to "add status", new_status_path(:gift_id => gift.id) %>
+      <%= link_to "edit", edit_gift_path(gift.id) %>
+   </td>
+   <td><%= gift.status_summary %></td>
+   <td>
+      <%= gift.description %>
+      <% if gift.link? %>
+         <a target="_blank" href="<%= gift.link %>">link</a>
+      <% end %>
+   </td>
+<tr>
