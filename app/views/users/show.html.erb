@@ -18,7 +18,19 @@
 <% @lists.each do |list| %>
    <%= list.name == @user.name ? "personal" : list.name %>
    <%= link_to "Add", new_gift_path(:list_id => list.id) %><br>
-   <%= render @gifts[list.id] %>
+   <table id="list" class="display">
+      <thead>
+         <tr><td></td><td>status</td><td>description</td></tr>
+      </thead>
+      <tbody>
+         <%= render @gifts[list.id] %>
+      </tbody>
+   </table>
+   <script>
+      $(document).ready( function () {
+         $('#list').DataTable();
+      } );
+   </script>
    <br>
 <% end %>
 </p>
