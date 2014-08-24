@@ -15,22 +15,33 @@
 <p>
 <strong>lists:</strong>
 <br>
-<% @lists.each do |list| %>
+<% @lists.each_with_index do |list, index| %>
    <%= list.name == @user.name ? "personal" : list.name %>
    <%= link_to "Add", new_gift_path(:list_id => list.id) %><br>
-   <table id="list" class="display">
-      <thead>
-         <tr><td></td><td>status</td><td>description</td></tr>
-      </thead>
-      <tbody>
-         <%= render @gifts[list.id] %>
-      </tbody>
-   </table>
-   <script>
-      $(document).ready( function () {
-         $('#list').DataTable();
-      } );
-   </script>
+   <% if not @gifts[list.id].empty? %>
+      <table id="list_<%= index %>" class="display">
+         <thead>
+            <tr><td></td><td>status</td><td>description</td></tr>
+         </thead>
+         <tbody>
+            <%= render @gifts[list.id] %>
+         </tbody>
+      </table>
+      <script>
+         $(document).ready( function () {
+            $("#list_<%= index %>").DataTable({
+               paging: false
+               , search: {regex: true}
+               , info: false
+               , columns: [
+               { orderable: false, width: "10%"}
+               , { width: "10%"}
+               , null
+               ]
+            });
+         } );
+      </script>
+   <% end %>
    <br>
 <% end %>
 </p>

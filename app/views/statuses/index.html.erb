@@ -1,6 +1,6 @@
 <h1>wishlist!</h1>
 
-<table>
+<table id="statuses" class="display">
    <thead>
       <tr><td>status</td><td>note</td><td>added by</td></tr>
    </thead>
@@ -8,3 +8,11 @@
       <%= render @statuses %>
    </tbody>
 </table>
+<script>
+   $(document).ready( function () {
+      $("#statuses").DataTable({
+             paging: false
+             search: {regex: true}
+          });
+   } );
+</script>
