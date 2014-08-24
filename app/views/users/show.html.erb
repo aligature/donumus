@@ -21,7 +21,7 @@
    <% if not @gifts[list.id].empty? %>
       <table id="list_<%= index %>" class="display">
          <thead>
-            <tr><td></td><td>status</td><td>description</td></tr>
+            <tr><td></td><td>status</td><td>&#9733;</td><td>description</td></tr>
          </thead>
          <tbody>
             <%= render @gifts[list.id] %>
@@ -35,7 +35,8 @@
                , info: false
                , columns: [
                { orderable: false, width: "10%"}
-               , { width: "10%"}
+               , { width: "5%"}
+               , { width: "1%"}
                , null
                ]
             });

@@ -35,6 +35,6 @@ class GiftsController < ApplicationController
 
    private
    def gift_params
-      params.require(:gift).permit(:description, :link, :list_id, :added_by_user_id)
+      params.require(:gift).permit(:description, :link, :list_id, :added_by_user_id, :starred)
    end
 end

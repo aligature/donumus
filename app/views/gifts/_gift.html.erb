@@ -1,10 +1,12 @@
+<% status = gift.status_summary %>
 <tr>
    <td>
       <%= link_to "view status", statuses_path(:gift_id => gift.id) %>
       <%= link_to "add status", new_status_path(:gift_id => gift.id) %>
       <%= link_to "edit", edit_gift_path(gift.id) %>
    </td>
-   <td><%= gift.status_summary %></td>
+   <td data-sort="<%= Status.statuses[status] %>"><%= status %></td>
+   <td><%=raw gift.starred? ? "&#9733;" : "" %></td>
    <td>
       <%= gift.description %>
       <% if gift.link? %>

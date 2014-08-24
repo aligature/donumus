@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140810203159) do
+ActiveRecord::Schema.define(version: 20140824150248) do
 
   create_table "addresses", force: true do |t|
     t.string   "address"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20140810203159) do
     t.datetime "updated_at"
     t.integer  "list_id"
     t.integer  "added_by_user_id"
+    t.boolean  "starred"
   end
 
   add_index "gifts", ["list_id"], name: "index_gifts_on_list_id"

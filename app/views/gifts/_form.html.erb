@@ -5,6 +5,11 @@
    <%= f.hidden_field :list_id, :value => @gift.list_id %>
 
    <p>
+   <%= f.label :starred %><br>
+   <%= f.check_box :starred %>
+   </p>
+
+   <p>
    <%= f.label :description %><br>
    <%= f.text_field :description %>
    </p>
