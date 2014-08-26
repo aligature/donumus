@@ -1,6 +1,6 @@
 <% status = gift.status_summary %>
 <tr>
-   <td>
+   <td style="white-space: nowrap">
       <%= link_to "view status", statuses_path(:gift_id => gift.id) %>
       <%= link_to "add status", new_status_path(:gift_id => gift.id) %>
       <%= link_to "edit", edit_gift_path(gift.id) %>
