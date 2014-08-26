@@ -16,33 +16,54 @@
 <strong>lists:</strong>
 <br>
 <% @lists.each_with_index do |list, index| %>
-   <%= list.name == @user.name ? "personal" : list.name %>
-   <%= link_to "Add", new_gift_path(:list_id => list.id) %><br>
-   <% if not @gifts[list.id].empty? %>
-      <table id="list_<%= index %>" class="display">
-         <thead>
-            <tr><td></td><td>status</td><td>&#9733;</td><td>description</td></tr>
-         </thead>
-         <tbody>
-            <%= render @gifts[list.id] %>
-         </tbody>
-      </table>
+   <div class="panel panel-default">
+      <div class="panel-heading" id="head_<%= index %>">
+         <h3>
+            <div style="display:inline;" id="arrow-right_<%= index %>">&#9654;</div>
+            <div style="display:inline;" id="arrow-down_<%= index %>">&#9660;</div>
+            <div style="display:inline;">
+               <%= list.name == @user.name ? "personal" : list.name %>
+               <%= link_to "Add", new_gift_path(:list_id => list.id) %>
+            </div>
+         </h3>
+      </div>
+      <% if not @gifts[list.id].empty? %>
+         <div id="table_<%= index %>">
+            <table id="list_<%= index %>" class="display">
+               <thead>
+                  <tr><td></td><td>status</td><td>&#9733;</td><td>description</td></tr>
+               </thead>
+               <tbody>
+                  <%= render @gifts[list.id] %>
+               </tbody>
+            </table>
+         </div>
+         <script>
+            $(document).ready( function () {
+               $("#list_<%= index %>").DataTable({
+                  paging: false
+                  , search: {regex: true}
+                  , info: false
+                  , columns: [
+                  { orderable: false, width: "10%"}
+                  , { width: "5%"}
+                  , { width: "1%"}
+                  , null
+                  ]
+               });
+            } );
+         </script>
+      <% end %>
       <script>
-         $(document).ready( function () {
-            $("#list_<%= index %>").DataTable({
-               paging: false
-               , search: {regex: true}
-               , info: false
-               , columns: [
-               { orderable: false, width: "10%"}
-               , { width: "5%"}
-               , { width: "1%"}
-               , null
-               ]
+         $(document).ready(function(){
+            $("#table_<%= index %>").hide();
+            $("#arrow-down_<%= index %>").hide();
+            $("#head_<%= index %>").click(function(){
+               $("#table_<%= index %>").slideToggle("fast");
+               $(document).find("#arrow-right_<%= index %>, #arrow-down_<%= index %>").toggle();
             });
-         } );
+         });
       </script>
-   <% end %>
-   <br>
+   </div>
 <% end %>
 </p>
