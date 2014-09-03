@@ -1,69 +1,68 @@
 <% view_family = Family.view_family(session) %>
-<%= link_to "back to " + view_family.name, family_path(view_family) %>
-<br><br>
 
-<p>
-<strong>name:</strong>
-<%= @user.name %>
-</p>
+<ol class="breadcrumb">
+   <li><%= link_to "my families", action: :index %></li>
+   <li><%= link_to view_family.name, family_path(view_family) %></li>
+   <li class="active"><%= @user.name %> (<%= link_to "user info", user_info_path(@user) %>)</li>
+</ol>
 
-<p>
-<strong>info:</strong>
-<%= link_to "info", user_info_path(@user) %>
-</p>
-
-<p>
-<strong>lists:</strong>
-<br>
-<% @lists.each_with_index do |list, index| %>
-   <div class="panel panel-default">
-      <div class="panel-heading" id="head_<%= index %>">
-         <h3>
-            <div style="display:inline;" id="arrow-right_<%= index %>">&#9654;</div>
-            <div style="display:inline;" id="arrow-down_<%= index %>">&#9660;</div>
-            <div style="display:inline;">
-               <%= list.name == @user.name ? "personal" : list.name %>
-               <%= link_to "Add", new_gift_path(:list_id => list.id) %>
-            </div>
-         </h3>
-      </div>
-      <% if not @gifts[list.id].empty? %>
-         <div id="table_<%= index %>">
-            <table id="list_<%= index %>" class="display">
-               <thead>
-                  <tr><td></td><td>status</td><td>&#9733;</td><td>description</td></tr>
-               </thead>
-               <tbody>
-                  <%= render @gifts[list.id] %>
-               </tbody>
-            </table>
-         </div>
-         <script>
-            $(document).ready( function () {
-               $("#list_<%= index %>").DataTable({
-                  paging: false
-                  , search: {regex: true}
-                  , info: false
-                  , columns: [
-                  { orderable: false, width: "10%"}
-                  , { width: "5%"}
-                  , { width: "1%"}
-                  , null
-                  ]
-               });
-            } );
-         </script>
-      <% end %>
-      <script>
-         $(document).ready(function(){
-            $("#table_<%= index %>").hide();
-            $("#arrow-down_<%= index %>").hide();
-            $("#head_<%= index %>").click(function(){
-               $("#table_<%= index %>").slideToggle("fast");
-               $(document).find("#arrow-right_<%= index %>, #arrow-down_<%= index %>").toggle();
-            });
-         });
-      </script>
+<div class="panel panel-primary">
+   <div class="panel-heading">
+      <h2 class="panel-title">lists</h2>
    </div>
-<% end %>
-</p>
+   <div class="panel-body">
+      <% @lists.each_with_index do |list, index| %>
+         <div class="panel panel-default">
+            <div class="panel-heading" id="head_<%= index %>">
+               <h4>
+                  <div style="display:inline;" id="arrow-right_<%= index %>">&#9654;</div>
+                  <div style="display:inline;" id="arrow-down_<%= index %>">&#9660;</div>
+                  <div style="display:inline;">
+                     <%= list.name == @user.name ? "personal" : list.name %>
+                     <%= link_to "Add", new_gift_path(:list_id => list.id) %>
+                  </div>
+               </h4>
+            </div>
+            <% if not @gifts[list.id].empty? %>
+               <div id="table_<%= index %>" class="table-responsive">
+                  <table id="list_<%= index %>" class="table table-condensed table-hover">
+                     <thead>
+                        <tr><td></td><td>status</td><td>&#9733;</td><td>description</td></tr>
+                     </thead>
+                     <tbody>
+                        <%= render @gifts[list.id] %>
+                     </tbody>
+                  </table>
+               </div>
+               <script>
+                  $(document).ready( function () {
+                     $("#list_<%= index %>").DataTable({
+                        paging: false
+                        , search: {regex: true}
+                        , info: false
+                        , columns: [
+                        { orderable: false, width: "10%"}
+                        , { width: "5%"}
+                        , { width: "1%"}
+                        , null
+                        ]
+                     });
+                  } );
+               </script>
+            <% end %>
+            <script>
+               $(document).ready(function(){
+                  $("#table_<%= index %>").show();
+                  $("#arrow-down_<%= index %>").show();
+                  $("#arrow-right_<%= index %>").hide();
+                  $("#head_<%= index %>").click(function(){
+                     $("#table_<%= index %>").slideToggle("fast");
+                     $(document).find("#arrow-right_<%= index %>, #arrow-down_<%= index %>").toggle();
+                  });
+               });
+            </script>
+         </div>
+      <% end %>
+   </div>
+</div>
+

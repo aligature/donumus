@@ -1,14 +1,21 @@
-<h1>wishlist!</h1>
-
 <% if current_user %>
-   <h2>user:
-      <%= @user.name %>
-   </h2>
 
-   <h2>families:</h2>
-   <% @families.each do |family| %>
-      <%= link_to family.name, family_path(family.id) %><br>
-   <% end %>
+   <ol class="breadcrumb">
+      <li class="active">my families</li>
+   </ol>
+
+   <div class="panel panel-primary">
+      <div class="panel-heading">
+         <h2 class="panel-title">families</h2>
+      </div>
+      <div class="panel-body">
+         <div class="btn-group-vertical">
+            <% @families.each do |family| %>
+               <%= link_to family.name, family_path(family.id), class: "btn btn-success btn-lg" %>
+            <% end %>
+         </div>
+      </div>
+   </div>
 <% else %>
    <%= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2) %>
 <% end %>

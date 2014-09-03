@@ -1,11 +1,17 @@
-<%= link_to "my families", action: :index %>
+<ol class="breadcrumb">
+   <li><%= link_to "my families", action: :index %></li>
+   <li class="active"><%= @family.name %></li>
+</ol>
 
-<p>
-<strong>family:</strong>
-<%= @family.name %>
-</p>
-
-<p>
-<strong>members:</strong><br>
-<%= render @members %>
-</p>
+<div class="panel panel-primary">
+   <div class="panel-heading">
+      <h2 class="panel-title">family members</h2>
+   </div>
+   <div class="panel-body">
+      <div class="btn-group-vertical">
+         <% @members.each do |member| %>
+            <%= link_to member.name, user_path(member.id), class: "btn btn-success btn-lg" %>
+         <% end %>
+      </div>
+   </div>
+</div>

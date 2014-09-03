@@ -1,5 +1,14 @@
-<strong>name:</strong>
-<%= link_to @user.name, user_path(@user) %>
+<% view_family = Family.view_family(session) %>
+
+<ol class="breadcrumb">
+   <li><%= link_to "my families", action: :index %></li>
+   <li><%= link_to view_family.name, family_path(view_family) %></li>
+   <li><%= link_to @user.name, user_path(@user) %></li>
+   <li class="active">user info</li>
+</ol>
+
+<strong>birthday:</strong>
+<%= @user.birthday %>
 <br>
 <br>
 
