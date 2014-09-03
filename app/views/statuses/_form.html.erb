@@ -12,17 +12,17 @@
    <%= f.hidden_field :gift_id, :value => @status.gift_id %>
    <%= f.hidden_field :added_by_user_id, :value => current_user.id %>
 
-   <p>
    <%= f.label :status %><br>
-   <%= f.select :status, options_for_select(@statuses.collect { |s| [s[0].humanize, s[0]] }, selected: @status.status) %>
-   </p>
+   <div class="input-group">
+   <%= f.select :status, options_for_select(@statuses.collect { |s| [s[0].humanize, s[0]] }, selected: @status.status), {}, {:class => "form-control"} %>
+   </div>
 
-   <p>
    <%= f.label :note %><br>
-   <%= f.text_field :note %>
-   </p>
+   <div class="input-group">
+   <%= f.text_field :note, {:class => "form-control"} %>
+   </div>
 
-   <p>
+   <div class="input-group">
    <%= f.submit %>
-   </p>
+   </div>
 <% end %>
