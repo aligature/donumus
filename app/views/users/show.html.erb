@@ -18,7 +18,7 @@
                   <div style="display:inline;" id="arrow-right_<%= index %>">&#9654;</div>
                   <div style="display:inline;" id="arrow-down_<%= index %>">&#9660;</div>
                   <div style="display:inline;">
-                     <%= list.name == @user.name ? "personal" : list.name %>
+                     <%= list.name == @user.username ? "personal" : list.name %>
                      <%= link_to "Add", new_gift_path(:list_id => list.id) %>
                   </div>
                </h4>
