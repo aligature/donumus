@@ -37,6 +37,10 @@ gem 'omniauth-google-oauth2'
 
 gem 'activeadmin', github: 'gregbell/active_admin'
 
+gem 'railties'
+
+gem 'thin'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
