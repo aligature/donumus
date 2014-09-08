@@ -1,9 +1,10 @@
 <% view_family = Family.view_family(session) %>
+<% view_user = User.view_user(session) %>
 
 <ol class="breadcrumb">
-   <li><%= link_to "my families", action: :index %></li>
+   <li><%= link_to "my families", families_path %></li>
    <li><%= link_to view_family.name, family_path(view_family) %></li>
-   <li class="active"><%= @user.name %> (<%= link_to "user info", user_info_path(@user) %>)</li>
+   <li class="active"><%= view_user.name %> (<%= link_to "user info", user_info_path(view_user) %>)</li>
 </ol>
 
 <div class="panel panel-primary">
@@ -19,15 +20,21 @@
                   <div style="display:inline;" id="arrow-down_<%= index %>">&#9660;</div>
                   <div style="display:inline;">
                      <%= list.name == @user.username ? "personal" : list.name %>
-                     <%= link_to "Add", new_gift_path(:list_id => list.id) %>
+                     <%= link_to "add", new_gift_path(:list_id => list.id) %>
                   </div>
                </h4>
             </div>
             <% if not @gifts[list.id].empty? %>
-               <div id="table_<%= index %>" class="table-responsive">
+               <div id="table_<%= index %>" class="table">
                   <table id="list_<%= index %>" class="table table-condensed table-hover">
                      <thead>
-                        <tr><td></td><td>status</td><td>&#9733;</td><td>description</td></tr>
+                        <tr>
+                           <td><%= image_tag('edit.png', alt: "edit", height: 16) %></td>
+                           <td><%= image_tag('delete.png', alt: "delete", height: 16) %></td>
+                           <td class="nowrap">&#9733;&#160;&#160;&#160;</td>
+                           <td>status</td>
+                           <td>description</td>
+                        </tr>
                      </thead>
                      <tbody>
                         <%= render @gifts[list.id] %>
@@ -40,9 +47,12 @@
                         paging: false
                         , search: {regex: true}
                         , info: false
+                        , stateSave: true
+                        , sDom: 't<plf>'
                         , columns: [
-                        { orderable: false, width: "10%"}
-                        , { width: "5%"}
+                        { width: "1%", orderable: false}
+                        , { width: "1%", orderable: false}
+                        , { width: "1%"}
                         , { width: "1%"}
                         , null
                         ]
