@@ -12,67 +12,7 @@
       <h2 class="panel-title">lists</h2>
    </div>
    <div class="panel-body">
-      <% @lists.each_with_index do |list, index| %>
-         <div class="panel panel-default">
-            <div class="panel-heading" id="head_<%= index %>">
-               <h4>
-                  <div style="display:inline;" id="arrow-right_<%= index %>">&#9654;</div>
-                  <div style="display:inline;" id="arrow-down_<%= index %>">&#9660;</div>
-                  <div style="display:inline;">
-                     <%= list.name == @user.username ? "personal" : list.name %>
-                     <%= link_to "add", new_gift_path(:list_id => list.id) %>
-                  </div>
-               </h4>
-            </div>
-            <% if not @gifts[list.id].empty? %>
-               <div id="table_<%= index %>" class="table">
-                  <table id="list_<%= index %>" class="table table-condensed table-hover">
-                     <thead>
-                        <tr>
-                           <td><%= image_tag('edit.png', alt: "edit", height: 16) %></td>
-                           <td><%= image_tag('delete.png', alt: "delete", height: 16) %></td>
-                           <td class="nowrap">&#9733;&#160;&#160;&#160;</td>
-                           <td>status</td>
-                           <td>description</td>
-                        </tr>
-                     </thead>
-                     <tbody>
-                        <%= render @gifts[list.id] %>
-                     </tbody>
-                  </table>
-               </div>
-               <script>
-                  $(document).ready( function () {
-                     $("#list_<%= index %>").DataTable({
-                        paging: false
-                        , search: {regex: true}
-                        , info: false
-                        , stateSave: true
-                        , sDom: 't<plf>'
-                        , columns: [
-                        { width: "1%", orderable: false}
-                        , { width: "1%", orderable: false}
-                        , { width: "1%"}
-                        , { width: "1%"}
-                        , null
-                        ]
-                     });
-                  } );
-               </script>
-            <% end %>
-            <script>
-               $(document).ready(function(){
-                  $("#table_<%= index %>").show();
-                  $("#arrow-down_<%= index %>").show();
-                  $("#arrow-right_<%= index %>").hide();
-                  $("#head_<%= index %>").click(function(){
-                     $("#table_<%= index %>").slideToggle("fast");
-                     $(document).find("#arrow-right_<%= index %>, #arrow-down_<%= index %>").toggle();
-                  });
-               });
-            </script>
-         </div>
-      <% end %>
+      <%= render @lists %>
    </div>
 </div>
 
