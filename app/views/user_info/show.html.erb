@@ -1,9 +1,10 @@
 <% view_family = Family.view_family(session) %>
+<% view_user = User.view_user(session) %>
 
 <ol class="breadcrumb">
-   <li><%= link_to "my families", action: :index %></li>
+   <li><%= link_to "my families", families_path %></li>
    <li><%= link_to view_family.name, family_path(view_family) %></li>
-   <li><%= link_to @user.name, user_path(@user) %></li>
+   <li><%= link_to view_user.name, user_path(view_user) %></li>
    <li class="active">user info</li>
 </ol>
 
