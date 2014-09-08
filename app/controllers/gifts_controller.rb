@@ -33,6 +33,12 @@ class GiftsController < ApplicationController
       end
    end
 
+   def destroy
+      @gift = Gift.find(params[:id])
+      @gift.destroy
+      redirect_to User.view_user(session)
+   end
+
    private
    def gift_params
       params.require(:gift).permit(:description, :link, :list_id, :added_by_user_id, :starred)
