@@ -5,7 +5,8 @@ class StatusesController < ApplicationController
    end
 
    def index
-      @statuses = Gift.find(params[:gift_id]).statuses
+      @gift = Gift.find(params[:gift_id])
+      @statuses = @gift.statuses
    end
 
    def create
@@ -35,6 +36,12 @@ class StatusesController < ApplicationController
       else
          render 'edit'
       end
+   end
+
+   def destroy
+      @status = Status.find(params[:id])
+      @status.destroy
+      redirect_to User.view_user(session)
    end
 
    private
