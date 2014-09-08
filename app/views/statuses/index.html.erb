@@ -1,8 +1,18 @@
-<h1>wishlist!</h1>
+<% view_family = Family.view_family(session) %>
+<% view_user = User.view_user(session) %>
+
+<ol class="breadcrumb">
+   <li><%= link_to "my families", families_path %></li>
+   <li><%= link_to view_family.name, family_path(view_family) %></li>
+   <li><%= link_to view_user.name, user_path(view_user) %></li>
+   <li class="active">status</li>
+</ol>
+
+<%= link_to "add", new_status_path(:gift_id => @gift.id) %>
 
 <table id="statuses" class="table table-condensed table-hover">
    <thead>
-      <tr><td>status</td><td>note</td><td>added by</td></tr>
+      <tr><td><%= image_tag('delete.png', alt: "delete", height: 16) %></td><td>status</td><td>note</td><td>added by</td><td>when</td></tr>
    </thead>
    <tbody>
       <%= render @statuses %>
@@ -12,7 +22,15 @@
    $(document).ready( function () {
       $("#statuses").DataTable({
              paging: false
-             search: {regex: true}
+             , searching: false
+             , info: false
+             , columns: [
+             { width: "1%", orderable: false}
+             , { width: "1%"}
+             , null
+             , { width: "1%"}
+             , { width: "1%"}
+             ]
           });
    } );
 </script>
