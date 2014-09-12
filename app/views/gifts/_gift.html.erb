@@ -4,9 +4,11 @@
    <td><%= link_to image_tag('edit.png', alt: "edit", height: 16), edit_gift_path(gift.id) %></td>
    <td><%= link_to image_tag('delete.png', alt: "delete", height: 16), { controller: :gifts, action: :destroy, id: gift.id }, method: :delete, data: { confirm: 'Are you sure?' } %></td>
    <td><%=raw gift.starred? ? "&#9733;" : "" %></td>
-   <td class="nowrap" data-sort="<%= Status.statuses[summary] %>">
-      <%= link_to image_tag('edit.png', alt: "edit", height: 16), statuses_path(:gift_id => gift.id) %> <%= summary_label %>
-   </td>
+   <% if view_status %>
+      <td class="nowrap" data-sort="<%= Status.statuses[summary] %>">
+         <%= link_to image_tag('edit.png', alt: "edit", height: 16), statuses_path(:gift_id => gift.id) %> <%= summary_label %>
+      </td>
+   <% end %>
    <td>
       <%= gift.description %>
       <% if gift.link? %>
