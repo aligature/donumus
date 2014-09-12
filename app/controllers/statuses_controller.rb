@@ -1,16 +1,18 @@
 class StatusesController < ApplicationController
    def new
       @statuses = Status.statuses
-      @status = Status.new(:gift_id => params[:gift_id])
+      gift = Gift.find(params[:gift_id])
+      maybe_redirect(gift.check_permissions(current_user))
+      @status = Status.new(:gift_id => gift.id)
    end
 
    def index
       @gift = Gift.find(params[:gift_id])
+      maybe_redirect(@gift.check_permissions(current_user))
       @statuses = @gift.statuses
    end
 
    def create
-      @statuses = Status.statuses
       if @status = Status.create(status_params)
          redirect_to User.view_user(session)
       else
@@ -18,18 +20,16 @@ class StatusesController < ApplicationController
       end
    end
 
-   def show
-      @status = Status.find(params[:id])
-   end
-
    def edit
       @statuses = Status.statuses
       @status = Status.find(params[:id])
+      maybe_redirect(@status.check_permissions(current_user))
    end
 
    def update
       @statuses = Status.statuses
       @status = Status.find(params[:id])
+      maybe_redirect(@status.check_permissions(current_user))
 
       if @status.update(status_params)
          redirect_to User.view_user(session)
@@ -40,6 +40,7 @@ class StatusesController < ApplicationController
 
    def destroy
       @status = Status.find(params[:id])
+      maybe_redirect(@status.check_permissions(current_user))
       @status.destroy
       redirect_to User.view_user(session)
    end

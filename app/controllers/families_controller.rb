@@ -1,7 +1,6 @@
 class FamiliesController < ApplicationController
 
    def index
-      # replace with login
       if current_user
          @user = current_user
          @families = @user.families().order(:name)
@@ -10,6 +9,7 @@ class FamiliesController < ApplicationController
 
    def show
       @family = Family.find(params[:id])
+      maybe_redirect(@family.check_permissions(current_user))
       @family.save_as_view(session)
       @members = @family.users.order(:birthday)
    end

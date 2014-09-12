@@ -30,6 +30,16 @@ class User < ActiveRecord::Base
       "#{name} (#{username})"
    end
 
+   def check_permissions(user)
+      families.each do |family|
+         if !family.check_permissions(user)
+            return false
+         end
+      end
+      return true
+   end
+
+
    def email_required?
       false
    end
@@ -45,4 +55,5 @@ class User < ActiveRecord::Base
    def password_match?
       true
    end
+
 end

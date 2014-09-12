@@ -9,4 +9,12 @@ class Family < ActiveRecord::Base
    def self.view_family(session)
       return find(session[:view_family_id])
    end
+
+   def check_permissions(user)
+      if users.exclude? user
+         return false
+      end
+      return true
+   end
+
 end

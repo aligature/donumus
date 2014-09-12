@@ -1,4 +1,5 @@
 class Status < ActiveRecord::Base
+
    belongs_to :gift
    belongs_to :added_by_user, class_name: "User",
                               foreign_key: "added_by_user_id"
@@ -18,4 +19,9 @@ class Status < ActiveRecord::Base
    def to_s
       "%s %s" % [self.id, self.status]
    end
+
+   def check_permissions(user)
+      return gift.check_permissions(user)
+   end
+
 end

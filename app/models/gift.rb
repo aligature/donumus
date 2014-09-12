@@ -14,4 +14,8 @@ class Gift < ActiveRecord::Base
       "%d: %s" % [self.id, self.description]
    end
 
+   def check_permissions(user)
+      return list.check_permissions(user)
+   end
+
 end

@@ -1,6 +1,8 @@
 class GiftsController < ApplicationController
    def new
-      @gift = Gift.new(:list_id => params[:list_id])
+      list = List.find(params[:list_id])
+      maybe_redirect(list.check_permissions(current_user))
+      @gift = Gift.new(:list_id => list.id)
    end
 
    def create
@@ -11,20 +13,14 @@ class GiftsController < ApplicationController
       end
    end
 
-   def show
-      @gift = Gift.find(params[:id])
-   end
-
-   def index
-      @gifts = Gift.all
-   end
-
    def edit
       @gift = Gift.find(params[:id])
+      maybe_redirect(@gift.check_permissions(current_user))
    end
 
    def update
       @gift = Gift.find(params[:id])
+      maybe_redirect(@gift.check_permissions(current_user))
 
       if @gift.update(gift_params)
          redirect_to User.view_user(session)
@@ -35,6 +31,7 @@ class GiftsController < ApplicationController
 
    def destroy
       @gift = Gift.find(params[:id])
+      maybe_redirect(@gift.check_permissions(current_user))
       @gift.destroy
       redirect_to User.view_user(session)
    end
