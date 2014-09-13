@@ -15,11 +15,11 @@ class List < ActiveRecord::Base
 
    def check_permissions(user)
       families.each do |family|
-         if !family.check_permissions(user)
-            return false
+         if family.check_permissions(user)
+            return true
          end
       end
-      return true
+      return false
    end
 
 end
