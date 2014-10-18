@@ -1,25 +1,35 @@
 <% view_user = User.view_user(session) %>
 <%= link_to "back to " + view_user.name, user_path(view_user) %>
 
-<%= form_for @gift do |f| %>
-   <%= f.hidden_field :list_id, :value => @gift.list_id %>
+<div class="form">
+   <%= form_for @gift do |f| %>
+      <%= f.hidden_field :list_id, :value => @gift.list_id %>
 
-   <p>
-   <%= f.label :starred %><br>
-   <%= f.check_box :starred %>
-   </p>
+      <div class="checkbox">
+         <h3>
+            <label>
+               <%= f.check_box :starred %>
+               <span class="label label-default">starred</span>
+            </label>
+         </h3>
+      </div>
 
-   <p>
-   <%= f.label :description %><br>
-   <%= f.text_field :description %>
-   </p>
+      <div class="form-group">
+         <div class="input-group input-group-lg">
+            <span class="input-group-addon">description</span>
+            <%= f.text_field :description, :class => "form-control" %>
+         </div>
+      </div>
 
-   <p>
-   <%= f.label :link %><br>
-   <%= f.text_field :link %>
-   </p>
+      <div class="form-group">
+         <div class="input-group input-group-lg">
+            <span class="input-group-addon">link</span>
+            <%= f.text_field :link, :class => "form-control" %>
+         </div>
+      </div>
 
-   <p>
-   <%= f.submit %>
-   </p>
-<% end %>
+      <div class="form-group">
+         <%= f.submit %>
+      </div>
+   <% end %>
+</div>
