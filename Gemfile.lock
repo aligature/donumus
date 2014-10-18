@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/gregbell/active_admin.git
-  revision: ac85139e308d26cc5706e0f431ea07553fff45d5
+  revision: b8e89c74788199d383963267f4735dccbf292f20
   specs:
     activeadmin (1.0.0.pre)
       arbre (~> 1.0)
@@ -60,7 +60,7 @@ GEM
       execjs
     coffee-script-source (1.7.1)
     daemons (1.1.9)
-    devise (3.2.4)
+    devise (3.3.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -71,7 +71,7 @@ GEM
     execjs (2.2.1)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
-    formtastic (2.3.0.rc3)
+    formtastic (2.3.0.rc4)
       actionpack (>= 3.0)
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
@@ -162,9 +162,9 @@ GEM
       sass (~> 3.2.0)
       sprockets (~> 2.8, <= 2.11.0)
       sprockets-rails (~> 2.0)
-    sdoc (0.4.0)
-      json (~> 1.8)
-      rdoc (~> 4.0, < 5.0)
+    sdoc (0.4.1)
+      json (~> 1.7, >= 1.7.7)
+      rdoc (~> 4.0)
     sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
