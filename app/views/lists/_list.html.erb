@@ -9,7 +9,7 @@
          </div>
       </h4>
    </div>
-   <% hide_things = list.users.exclude? current_user %>
+   <% hide_things = list.users.include? current_user %>
    <% if not list.gifts.empty? %>
       <div id="table_<%= list_counter %>" class="table">
          <table id="list_<%= list_counter %>" class="table table-condensed table-hover">
