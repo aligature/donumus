@@ -9,8 +9,8 @@
          </div>
       </h4>
    </div>
-   <% view_status = list.users.exclude? current_user %>
-   <% if not @gifts[list.id].empty? %>
+   <% hide_things = list.users.exclude? current_user %>
+   <% if not list.gifts.empty? %>
       <div id="table_<%= list_counter %>" class="table">
          <table id="list_<%= list_counter %>" class="table table-condensed table-hover">
             <thead>
@@ -18,12 +18,12 @@
                   <td><%= image_tag('edit.png', alt: "edit", height: 16) %></td>
                   <td><%= image_tag('delete.png', alt: "delete", height: 16) %></td>
                   <td class="nowrap">&#9733;&#160;&#160;&#160;</td>
-                  <%= raw view_status ? '<td>status</td>' : '' %>
+                  <%= raw hide_things ? '' : '<td>status</td>' %>
                   <td>description</td>
                </tr>
             </thead>
             <tbody>
-               <%= render @gifts[list.id], view_status: view_status %>
+               <%= render list.gifts, hide_things: hide_things %>
             </tbody>
          </table>
       </div>
@@ -39,7 +39,7 @@
          { width: "1%", orderable: false}
          , { width: "1%", orderable: false}
          , { width: "1%"}
-         <%= raw view_status ? ', { width: "1%"}' : '' %>
+         <%= raw hide_things ? '' : ', { width: "1%"}' %>
          , null
          ]
          });

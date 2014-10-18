@@ -2,7 +2,8 @@ class Gift < ActiveRecord::Base
    belongs_to :list
    has_many :statuses
 
-   #validates :description, presence: true, length: { minimum: 5 }
+   scope :visible, -> (hide_things) { where :hidden != hide_things or !hide_things }
+
    validates :description, presence: true
    validates :link, url: true 
 
