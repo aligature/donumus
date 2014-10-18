@@ -2,9 +2,10 @@
 <% view_user = User.view_user(session) %>
 
 <ol class="breadcrumb">
+   <li><%= link_to current_user.name, user_path(current_user) %></li>
    <li><%= link_to "my families", families_path %></li>
    <li><%= link_to view_family.name, family_path(view_family) %></li>
-   <li><%= link_to view_user.name, user_path(view_user) %></li>
+   <li><%= user_breadcrumb(view_user, current_user, true) %></li>
    <li class="active">user info</li>
 </ol>
 

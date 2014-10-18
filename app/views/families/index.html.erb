@@ -1,6 +1,7 @@
 <% if current_user %>
 
    <ol class="breadcrumb">
+      <li><%= link_to current_user.name, user_path(current_user) %></li>
       <li class="active">my families</li>
    </ol>
 
