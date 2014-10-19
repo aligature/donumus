@@ -42,6 +42,8 @@ gem 'railties'
 
 gem 'thin'
 
+gem 'local_time'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

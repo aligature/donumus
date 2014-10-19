@@ -3,5 +3,6 @@
    <td><%= Status.label(status.status) %></td>
    <td><%= status.note %></td>
    <td class="nowrap"><%= status.added_by_user.name %></td>
-   <td class="nowrap"><%= l status.updated_at, format: :short %></td>
+   <td class="nowrap"><%= local_time_ago(status.updated_at) %></td>
+
 </tr>
