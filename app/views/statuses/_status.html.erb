@@ -1,5 +1,5 @@
 <tr>
-   <td><%= link_to image_tag('delete.png', alt: "delete", height: 16), { action: :destroy, id: status.id }, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+   <td><%= link_to image_tag('delete.png', alt: "delete", height: 16), { action: :destroy, id: status.id }, method: :delete, data: { confirm: 'do you really want to delete this?' } %></td>
    <td><%= Status.label(status.status) %></td>
    <td><%= status.note %></td>
    <td class="nowrap"><%= status.added_by_user.name %></td>

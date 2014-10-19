@@ -2,7 +2,7 @@
 <% summary_label = Status.label(summary) %>
 <tr>
    <td><%= link_to image_tag('edit.png', alt: "edit", height: 16), edit_gift_path(gift.id) %></td>
-   <td><%= link_to image_tag('delete.png', alt: "delete", height: 16), { controller: :gifts, action: :destroy, id: gift.id }, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+   <td><%= link_to image_tag('delete.png', alt: "delete", height: 16), { controller: :gifts, action: :destroy, id: gift.id }, method: :delete, data: { confirm: 'do you really want to delete this?' } %></td>
    <td><%=raw gift.starred? ? "&#9733;" : "" %></td>
    <% if !hide_things %>
       <td class="nowrap" data-sort="<%= Status.statuses[summary] %>">
