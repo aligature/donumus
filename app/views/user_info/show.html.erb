@@ -14,9 +14,8 @@
 <br>
 <br>
 
-<strong>note:</strong>
-<%= @note %>
-<br>
+<strong>note (<%= link_to 'edit', "#", :id => "edit_note" %>):</strong>
+<%= best_in_place @user.user_note, :notes, :activator => "#edit_note", :type => :textarea, :nil => "(empty user info)", :display_with => :simple_format, :ok_button => "save", :cancel_button => "cancel" %>
 <br>
 
 <strong>e-mail:</strong>

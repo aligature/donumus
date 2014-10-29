@@ -6,4 +6,8 @@ class UserNote < ActiveRecord::Base
       self.notes
    end
 
+   def check_permissions(user)
+      return self.user.check_permissions(user)
+   end
+
 end
