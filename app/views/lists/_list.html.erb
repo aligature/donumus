@@ -33,7 +33,6 @@
          paging: false
          , search: {regex: true}
          , info: false
-         , stateSave: true
          , sDom: 't<plf>'
          , columns: [
          { width: "1%", orderable: false}
@@ -42,6 +41,7 @@
          <%= raw hide_things ? '' : ', { width: "1%"}' %>
          , null
          ]
+         , order: [[ 2, "desc"], [3, "asc"]<%= raw hide_things ? '' : ', [4, "asc"]'%>]
          });
          } );
       </script>
