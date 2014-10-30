@@ -9,16 +9,27 @@
    <li class="active">status</li>
 </ol>
 
-<%= link_to "add", new_status_path(:gift_id => @gift.id) %>
+<div class="panel panel-danger">
+   <div class="panel-heading">
+      <h4>
+         <%= link_to "add", new_status_path(:gift_id => @gift.id), :class => "btn btn-success" %>
+         status
+      </h4>
+   </div>
+   <div>
+      <table id="statuses" class="table table-condensed table-hover">
+         <thead>
+            <tr><td><%= image_tag('delete.png', alt: "delete", height: 16) %></td><td>status</td><td>note</td><td class="nowrap">added by</td><td>when</td></tr>
+         </thead>
+         <tbody>
+            <%= render @statuses %>
+         </tbody>
+      </table>
+   </div>
+</div>
 
-<table id="statuses" class="table table-condensed table-hover">
-   <thead>
-      <tr><td><%= image_tag('delete.png', alt: "delete", height: 16) %></td><td>status</td><td>note</td><td>added by</td><td>when</td></tr>
-   </thead>
-   <tbody>
-      <%= render @statuses %>
-   </tbody>
-</table>
+<%= link_to "back to " + view_user.name, user_path(view_user), :class => "btn btn-success btn-lg" %>
+
 <script>
    $(document).ready( function () {
       $("#statuses").DataTable({

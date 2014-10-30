@@ -1,5 +1,4 @@
 <% view_user = User.view_user(session) %>
-<%= link_to "back to " + view_user.name, user_path(view_user) %>
 
 <div class="form">
    <%= form_for @gift do |f| %>

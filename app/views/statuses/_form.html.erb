@@ -1,28 +1,35 @@
 <% view_user = User.view_user(session) %>
-<%= link_to "back to " + view_user.name, user_path(view_user) %>
-<br><br>
-
+<h4>
 <strong>user:</strong>
 <%= view_user.name %>
+<br>
 
 <strong>gift:</strong>
 <%= Gift.find(@status.gift_id).description %>
+</h4>
+<br><br>
 
+<div class="form">
 <%= form_for @status do |f| %>
    <%= f.hidden_field :gift_id, :value => @status.gift_id %>
    <%= f.hidden_field :added_by_user_id, :value => current_user.id %>
 
-   <%= f.label :status %><br>
-   <div class="input-group">
-   <%= f.select :status, options_for_select(@statuses.collect { |s| [s[0].humanize, s[0]] }, selected: @status.status), {}, {:class => "form-control"} %>
+   <div class="form-group">
+      <div class="input-group input-group-lg">
+         <span class="input-group-addon">status</span>
+         <%= f.select :status, options_for_select(@statuses.collect { |s| [s[0].humanize, s[0]] }, selected: @status.status), {}, {:class => "form-control"} %>
+      </div>
    </div>
 
-   <%= f.label :note %><br>
-   <div class="input-group">
-   <%= f.text_field :note, {:class => "form-control"} %>
+   <div class="form-group">
+      <div class="input-group input-group-lg">
+         <span class="input-group-addon">note</span>
+         <%= f.text_field :note, {:class => "form-control"} %>
+      </div>
    </div>
 
    <div class="input-group">
-   <%= f.submit %>
+      <%= f.submit %>
    </div>
 <% end %>
+</div>

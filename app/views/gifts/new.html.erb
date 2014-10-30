@@ -1,4 +1,4 @@
-<h1>new gift</h1>
+<% view_user = User.view_user(session) %>
 
 <% if @gift and @gift.errors.any? %>
    <div id="error_explanation">
@@ -11,4 +11,11 @@
    </div>
 <% end %>
 
-<%= render partial: 'form', locals: {_target: gifts_path, _method: :post} %>
+<div class="panel panel-primary">
+   <div class="panel-heading"><h2>new gift</h2></div>
+   <div class="panel-body">
+      <%= render partial: 'form', locals: {_target: gifts_path, _method: :post} %>
+   </div>
+</div>
+
+<%= link_to "back to " + view_user.name, user_path(view_user), :class => "btn btn-success btn-lg" %>

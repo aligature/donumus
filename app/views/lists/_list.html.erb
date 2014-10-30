@@ -1,11 +1,11 @@
-<div class="panel panel-default">
+<div class="panel panel-danger">
    <div class="panel-heading" id="head_<%= list_counter %>">
       <h4>
          <div style="display:inline;" id="arrow-right_<%= list_counter %>">&#9654;</div>
          <div style="display:inline;" id="arrow-down_<%= list_counter %>">&#9660;</div>
          <div style="display:inline;">
+            <%= link_to "add", new_gift_path(:list_id => list.id), :class => "btn btn-success" %>
             <%= list.name == @user.username ? "personal" : list.name %>
-            <%= link_to "add", new_gift_path(:list_id => list.id) %>
          </div>
       </h4>
    </div>
