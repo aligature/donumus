@@ -8,7 +8,7 @@ class Status < ActiveRecord::Base
 
    def self.summary(statuses)
       statuses = statuses.sort_by {|status| self.statuses[status.status]}
-      statuses.empty? ? "available" : statuses.last.status
+      statuses.empty? ? nil : statuses.last
    end
 
    def self.label(status)
