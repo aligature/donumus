@@ -11,3 +11,9 @@
 {
    color: green
 }
+
+input[readonly]
+{
+   cursor: text !important;
+   background-color: white !important;
+}
