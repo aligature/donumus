@@ -3,6 +3,25 @@ class ApplicationController < ActionController::Base
    # For APIs, you may want to use :null_session instead.
    protect_from_forgery with: :exception
 
+   before_filter :check_session_times
+
+   SessionTimeout = 60 * 60
+   #SessionTimeout = 10
+
+   def check_session_times
+      if current_user
+         now = Time.now
+
+         # if enough time has gone by count it as a new session
+         if not current_user.current_session_time? or now - current_user.current_session_time > SessionTimeout
+            current_user.update_columns last_session_time: current_user.current_session_time, current_session_time: now
+         else
+            current_user.update_columns current_session_time: now
+         end
+
+      end
+   end
+
    def new_session_path(scope)
       new_user_session_path
    end

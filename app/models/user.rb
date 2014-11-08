@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
    has_many :emails
    has_many :phone_numbers
 
+   after_save :set_last_changed
+
    def save_as_view(session)
       session[:view_user_id] = id()
    end
@@ -59,5 +61,21 @@ class User < ActiveRecord::Base
    def password_match?
       true
    end
+
+   def set_last_changed
+      touch :last_change_time
+      families.each do |family|
+         family.set_last_changed
+      end
+   end
+
+   def updated?(user)
+      if last_change_time and user.last_session_time
+         last_change_time > user.last_session_time
+      else
+         false
+      end
+   end
+
 
 end

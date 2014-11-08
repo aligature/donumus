@@ -12,11 +12,15 @@
       <div class="panel-body">
          <div class="btn-group-vertical">
             <% @families.each do |family| %>
-               <%= link_to family.name, family_path(family.id), class: "btn btn-success btn-lg" %>
+               <% color = family.updated?(current_user) ? "info" : "success" %>
+               <%= link_to family.name, family_path(family.id), class: "btn btn-%s btn-lg" % color %>
             <% end %>
          </div>
       </div>
    </div>
+
 <% else %>
+
    <%= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2) %>
+
 <% end %>

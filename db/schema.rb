@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141108003844) do
+ActiveRecord::Schema.define(version: 20141108014442) do
 
   create_table "addresses", force: true do |t|
     t.string   "address"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20141108003844) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "last_change_time"
   end
 
   create_table "family_users", force: true do |t|
@@ -53,6 +54,7 @@ ActiveRecord::Schema.define(version: 20141108003844) do
     t.integer  "added_by_user_id"
     t.boolean  "starred"
     t.boolean  "hidden"
+    t.datetime "last_change_time"
   end
 
   add_index "gifts", ["list_id"], name: "index_gifts_on_list_id"
@@ -71,6 +73,7 @@ ActiveRecord::Schema.define(version: 20141108003844) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "personal"
+    t.datetime "last_change_time"
   end
 
   add_index "lists", ["name"], name: "index_lists_on_name", unique: true
@@ -102,13 +105,16 @@ ActiveRecord::Schema.define(version: 20141108003844) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "sign_in_count",      default: 0, null: false
+    t.integer  "sign_in_count",        default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.boolean  "administrator"
     t.date     "birthday"
+    t.datetime "last_session_time"
+    t.datetime "current_session_time"
+    t.datetime "last_change_time"
   end
 
   add_index "users", ["username"], name: "index_users_on_username", unique: true

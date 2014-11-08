@@ -12,10 +12,10 @@
 <% end %>
 
 <div class="panel panel-primary">
-   <div class="panel-heading"><h2>new gift</h2></div>
+   <div class="panel-heading"><h2>new gift <%= link_to "back to " + view_user.name, user_path(view_user), :class => "btn btn-success btn" %></h2></div>
    <div class="panel-body">
       <%= render partial: 'form', locals: {_target: gifts_path, _method: :post} %>
    </div>
 </div>
 
-<%= link_to "back to " + view_user.name, user_path(view_user), :class => "btn btn-success btn-lg" %>
+

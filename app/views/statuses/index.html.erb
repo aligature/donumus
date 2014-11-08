@@ -9,6 +9,10 @@
    <li class="active">status</li>
 </ol>
 
+<p>
+<%= link_to "back to " + view_user.name, user_path(view_user), :class => "btn btn-success btn" %>
+</p>
+
 <div class="panel panel-primary">
    <div>
       <div class="input-group">
@@ -35,8 +39,6 @@
       </table>
    </div>
 </div>
-
-<%= link_to "back to " + view_user.name, user_path(view_user), :class => "btn btn-success btn-lg" %>
 
 <script>
    $(document).ready( function () {

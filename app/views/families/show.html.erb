@@ -11,7 +11,8 @@
    <div class="panel-body">
       <div class="btn-group-vertical">
          <% @members.each do |member| %>
-            <%= link_to member.name, user_path(member.id), class: "btn btn-success btn-lg" %>
+            <% color = member.updated?(current_user) ? "info" : "success" %>
+            <%= link_to member.name, user_path(member.id), class: "btn btn-%s btn-lg" % color %>
          <% end %>
       </div>
    </div>
