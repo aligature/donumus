@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+   include LastChanged
+
    # Include default devise modules. Others available are:
    devise :trackable, :omniauthable, :omniauth_providers => [:google_oauth2]
 
@@ -68,14 +70,5 @@ class User < ActiveRecord::Base
          family.set_last_changed
       end
    end
-
-   def updated?(user)
-      if last_change_time and user.last_session_time
-         last_change_time > user.last_session_time
-      else
-         false
-      end
-   end
-
 
 end

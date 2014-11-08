@@ -1,4 +1,6 @@
 class Gift < ActiveRecord::Base
+   include LastChanged
+
    belongs_to :list
    has_many :statuses, dependent: :destroy
 
@@ -24,14 +26,6 @@ class Gift < ActiveRecord::Base
    def set_last_changed
       touch :last_change_time
       list.set_last_changed
-   end
-
-   def updated?(user)
-      if last_change_time and user.last_session_time
-         last_change_time > user.last_session_time
-      else
-         false
-      end
    end
 
 end
