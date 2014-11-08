@@ -1,4 +1,5 @@
-<% color = list.updated?(current_user) ? "info" : "danger" %>
+<% hide_things = list.users.include? current_user %>
+<% color = (not hide_things and list.updated?(current_user)) ? "info" : "danger" %>
 <div class="panel panel-<%= color %>">
    <div class="panel-heading" id="head_<%= list_counter %>">
       <h4>

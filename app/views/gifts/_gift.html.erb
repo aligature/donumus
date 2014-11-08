@@ -3,7 +3,7 @@
    summary = top_status ? top_status.status : "available"
    summary_level = Status.statuses[summary]
    summary_label = top_status ? "%s (%s)" % [Status.label(summary), top_status.added_by_user.first_name] : ""
-   color = gift.updated?(current_user) ? "info" : ""
+   color = (not hide_things and gift.updated?(current_user)) ? "info" : ""
 %>
 <tr class="<%= color %>">
    <td><%= link_to image_tag('edit.png', alt: "edit", height: 16), edit_gift_path(gift.id) %></td>
