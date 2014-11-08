@@ -1,6 +1,6 @@
 class Gift < ActiveRecord::Base
    belongs_to :list
-   has_many :statuses
+   has_many :statuses, dependent: :destroy
 
    scope :visible, -> (hide_things) { where :hidden != hide_things or !hide_things }
 

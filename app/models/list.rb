@@ -3,7 +3,7 @@ class List < ActiveRecord::Base
    has_many :list_users, :class_name => 'ListUser'
    has_many :users, through: :list_users
    has_many :families, -> { distinct }, through: :users
-   has_many :gifts
+   has_many :gifts, dependent: :destroy
 
    def save_as_view(session)
       session[:view_list_id] = id
