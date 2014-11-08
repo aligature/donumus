@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141018175154) do
+ActiveRecord::Schema.define(version: 20141108003844) do
 
   create_table "addresses", force: true do |t|
     t.string   "address"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20141018175154) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "personal"
   end
 
   add_index "lists", ["name"], name: "index_lists_on_name", unique: true
