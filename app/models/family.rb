@@ -1,4 +1,6 @@
 class Family < ActiveRecord::Base
+   include LastChanged
+
    has_many :family_users, :class_name => 'FamilyUser'
    has_many :users, through: :family_users
 
@@ -19,14 +21,6 @@ class Family < ActiveRecord::Base
 
    def set_last_changed
       touch :last_change_time
-   end
-
-   def updated?(user)
-      if last_change_time and user.last_session_time
-         last_change_time > user.last_session_time
-      else
-         false
-      end
    end
 
 end
