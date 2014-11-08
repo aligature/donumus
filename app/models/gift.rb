@@ -7,6 +7,8 @@ class Gift < ActiveRecord::Base
    validates :description, presence: true
    validates :link, url: true 
 
+   after_save :set_last_changed
+
    def status_summary
       Status.summary(self.statuses)
    end
@@ -17,6 +19,19 @@ class Gift < ActiveRecord::Base
 
    def check_permissions(user)
       return list.check_permissions(user)
+   end
+
+   def set_last_changed
+      touch :last_change_time
+      list.set_last_changed
+   end
+
+   def updated?(user)
+      if last_change_time and user.last_session_time
+         last_change_time > user.last_session_time
+      else
+         false
+      end
    end
 
 end

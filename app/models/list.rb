@@ -22,4 +22,19 @@ class List < ActiveRecord::Base
       return false
    end
 
+   def set_last_changed
+      touch :last_change_time
+      users.each do |user|
+         user.set_last_changed
+      end
+   end
+
+   def updated?(user)
+      if last_change_time and user.last_session_time
+         last_change_time > user.last_session_time
+      else
+         false
+      end
+   end
+
 end
