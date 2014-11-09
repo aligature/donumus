@@ -1,23 +1,31 @@
 <%
-   top_status = gift.status_summary
-   summary = top_status ? top_status.status : "available"
-   summary_level = Status.statuses[summary]
-   summary_label = top_status ? "%s (%s)" % [Status.label(summary), top_status.added_by_user.first_name] : ""
-   color = (not hide_things and gift.updated?(current_user)) ? "info" : ""
-%>
-<tr class="<%= color %>">
-   <td><%= link_to image_tag('edit.png', alt: "edit", height: 16), edit_gift_path(gift.id) %></td>
-   <td><%= link_to image_tag('delete.png', alt: "delete", height: 16), { controller: :gifts, action: :destroy, id: gift.id }, method: :delete, data: { confirm: 'do you really want to delete this?' } %></td>
-   <td><%=raw gift.starred? ? "&#9733;" : "" %></td>
-   <% if !hide_things %>
-      <td class="nowrap" data-sort="<%= summary_level %>">
-         <%= link_to image_tag('edit.png', alt: "edit", height: 16), statuses_path(:gift_id => gift.id) %> <%= raw summary_label %>
-      </td>
-   <% end %>
-   <td>
-      <%= gift.description %>
-      <% if gift.link? %>
-         <a target="_blank" href="<%= gift.link %>">link</a>
+   if !hide_things or !gift.hidden
+      top_status = gift.status_summary
+      summary = top_status ? top_status.status : "available"
+      summary_level = Status.statuses[summary]
+      summary_label = top_status ? "%s (%s)" % [Status.label(summary), top_status.added_by_user.first_name] : ""
+      color = (not hide_things and gift.updated?(current_user)) ? "info" : ""
+   %>
+   <tr class="<%= color %>">
+      <td><%= link_to image_tag('edit.png', alt: "edit", height: 16), edit_gift_path(gift.id) %></td>
+      <td><%= link_to image_tag('delete.png', alt: "delete", height: 16),
+         { controller: :gifts, action: :destroy, id: gift.id },
+         method: :delete,
+         data: { confirm: 'do you really want to delete this?' } %></td>
+      <td><%=raw gift.starred? ? "&#9733;" : "" %></td>
+      <% if !hide_things %>
+         <td class="nowrap" data-sort="<%= summary_level %>">
+            <%= link_to image_tag('edit.png', alt: "edit", height: 16), statuses_path(:gift_id => gift.id) %> <%= raw summary_label %>
+         </td>
       <% end %>
-   </td>
-</tr>
+      <td>
+         <% if gift.hidden %>
+            <%= image_tag('hidden.png', alt: "hidden", height: 16) %>
+         <% end %>
+         <%= gift.description %>
+         <% if gift.link? %>
+            <a target="_blank" href="<%= gift.link %>">link</a>
+         <% end %>
+      </td>
+   </tr>
+<% end %>

@@ -1,4 +1,5 @@
 <% view_user = User.view_user(session) %>
+<% hide_things = @gift.list.users.include? current_user %>
 
 <div class="form">
    <%= form_for @gift do |f| %>
@@ -12,6 +13,17 @@
             </label>
          </h3>
       </div>
+
+      <% if not hide_things %>
+         <div class="checkbox">
+            <h3>
+               <label>
+                  <%= f.check_box :hidden %>
+                  <span class="label label-default">hidden</span>
+               </label>
+            </h3>
+         </div>
+      <% end  %>
 
       <div class="form-group">
          <div class="input-group input-group-lg">
