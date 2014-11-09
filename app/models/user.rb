@@ -14,8 +14,6 @@ class User < ActiveRecord::Base
    has_many :emails
    has_many :phone_numbers
 
-   after_save :set_last_changed
-
    def save_as_view(session)
       session[:view_user_id] = id()
    end
