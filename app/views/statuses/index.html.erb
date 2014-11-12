@@ -34,6 +34,7 @@
             <tr><td><%= image_tag('delete.png', alt: "delete", height: 16) %></td><td>status</td><td>note</td><td class="nowrap">added by</td><td>when</td></tr>
          </thead>
          <tbody>
+            <%= render @gift.added_status %>
             <%= render @statuses %>
          </tbody>
       </table>

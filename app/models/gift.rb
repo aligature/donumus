@@ -28,4 +28,10 @@ class Gift < ActiveRecord::Base
       list.set_last_changed
    end
 
+   def added_status
+      return Status.new(:added_by_user_id => self.added_by_user_id, :gift_id => self.id,
+                        :note => "gift created", :status => :available,
+                        :created_at => self.created_at, :updated_at => self.created_at)
+   end
+
 end
