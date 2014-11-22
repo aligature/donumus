@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
    has_many :addresses
    has_many :emails
    has_many :phone_numbers
+   has_many :family_group_users, :class_name => 'FamilyGroupUser'
+   has_many :family_groups, through: :family_group_users
 
    def save_as_view(session)
       session[:view_user_id] = id()

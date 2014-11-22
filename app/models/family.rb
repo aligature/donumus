@@ -3,6 +3,8 @@ class Family < ActiveRecord::Base
 
    has_many :family_users, :class_name => 'FamilyUser'
    has_many :users, through: :family_users
+   has_many :family_family_groups, :class_name => 'FamilyFamilyGroup'
+   has_many :family_groups, through: :family_family_groups
 
    def save_as_view(session)
       session[:view_family_id] = id
