@@ -31,7 +31,11 @@
 <body>
    <div class="container-fluid">
       <div class="row">
-         <div class="col-sm-6 col-xs-12"><h2 class="green">wishlist<%= link_to image_tag('refresh.png', alt: "refresh", height: 50), request.path %></h2></div>
+         <div class="col-sm-6 col-xs-12">
+            <h2 class="green">
+               <%= link_to "wishlist", families_path %><%= link_to image_tag('refresh.png', alt: "refresh", height: 50), request.path %>
+            </h2>
+         </div>
          <div class="col-sm-6 col-xs-12 text-right">
                <% if current_user %>
                   <div class="row"><div class="col-xs-12"><%= current_user.name %></div></div>
