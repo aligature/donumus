@@ -10,7 +10,8 @@
    <div class="form-group">
       <div class="input-group input-group">
          <span class="input-group-addon">status</span>
-         <%= f.select :status, options_for_select(Status.statuses.collect { |s| [s[0].humanize, s[0]] }, selected: status.status), {}, {:class => "form-control"} %>
+         <% options = Status.statuses.select{|s| s != 'available' }.map { |s| [s[0].humanize, s[0]] } %>
+         <%= f.select :status, options_for_select(options, selected: status.status), {}, {:class => "form-control"} %>
       </div>
    </div>
 
