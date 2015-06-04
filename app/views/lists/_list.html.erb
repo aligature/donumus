@@ -53,7 +53,8 @@
       $("#table_<%= list_counter %>").show();
       $("#arrow-down_<%= list_counter %>").show();
       $("#arrow-right_<%= list_counter %>").hide();
-      $("#head_<%= list_counter %>").click(function(){
+         $("#head_<%= list_counter %>").click(function()
+         {
       $("#table_<%= list_counter %>").slideToggle("fast");
       $(document).find("#arrow-right_<%= list_counter %>, #arrow-down_<%= list_counter %>").toggle();
       });
