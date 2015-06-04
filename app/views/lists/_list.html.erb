@@ -17,8 +17,8 @@
          <table id="list_<%= list_counter %>" class="table table-condensed table-hover">
             <thead>
                <tr>
-                  <td><%= image_tag('edit.png', alt: "edit", height: 16) %></td>
-                  <td><%= image_tag('delete.png', alt: "delete", height: 16) %></td>
+                  <td><%= image_tag('edit.png', height: 16) %></td>
+                  <td><%= image_tag('delete.png', height: 16) %></td>
                   <td class="nowrap">&#9733;&#160;&#160;&#160;</td>
                   <%= raw hide_things ? '' : '<td>status</td>' %>
                   <td>description</td>
@@ -50,14 +50,14 @@
    <% end %>
    <script>
       $(document).ready(function(){
-      $("#table_<%= list_counter %>").show();
-      $("#arrow-down_<%= list_counter %>").show();
-      $("#arrow-right_<%= list_counter %>").hide();
+         $("#table_<%= list_counter %>").show();
+         $("#arrow-down_<%= list_counter %>").show();
+         $("#arrow-right_<%= list_counter %>").hide();
          $("#head_<%= list_counter %>").click(function()
          {
-      $("#table_<%= list_counter %>").slideToggle("fast");
-      $(document).find("#arrow-right_<%= list_counter %>, #arrow-down_<%= list_counter %>").toggle();
-      });
+            $("#table_<%= list_counter %>").slideToggle("fast");
+            $(document).find("#arrow-right_<%= list_counter %>, #arrow-down_<%= list_counter %>").toggle();
+         });
       });
    </script>
 </div>
