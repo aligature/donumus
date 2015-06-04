@@ -9,9 +9,10 @@ ActiveAdmin.register FamilyUser do
       column "User" do |fu|
          usr = "%s (%d)" % [User.find(fu.user_id).name, fu.user_id]
       end
+      column :hidden
       actions
    end
 
-   permit_params :user_id, :family_id
+   permit_params :user_id, :family_id, :hidden
 
 end

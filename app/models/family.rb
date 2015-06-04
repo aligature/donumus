@@ -2,7 +2,14 @@ class Family < ActiveRecord::Base
    include LastChanged
 
    has_many :family_users, :class_name => 'FamilyUser'
-   has_many :users, through: :family_users
+   has_many :visible_family_users, -> { where hidden: true }, :class_name => 'FamilyUser'
+   has_many :users, through: :visible_family_users
+
+   #has_many :event_users
+   #has_many :active_event_users, -> { where active: true }, class_name: 'EventUser'
+   #has_many :active_events, :through => :active_event_users, class_name: 'Event', :source => :event
+
+   #has_many :admins, :through => :company_memberships, :class_name => :user, :conditions => {:admin => true}
 
    def save_as_view(session)
       session[:view_family_id] = id
