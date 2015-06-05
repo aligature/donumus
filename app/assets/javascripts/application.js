@@ -13,6 +13,7 @@
 //= require turbolinks
 //= require jquery
 //= require jquery_ujs
+//= require jquery.turbolinks
 //= require local_time
 //= require jquery.purr
 //= require best_in_place

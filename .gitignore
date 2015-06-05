@@ -40,3 +40,4 @@ config/initializers/secret_token.rb
 
 # precompiled assets
 /public/assets/*
+run.sh
