@@ -30,34 +30,42 @@
          </table>
       </div>
       <script>
-         $(document).ready( function () {
-         $("#list_<%= list_counter %>").DataTable({
-         paging: false
-         , search: {regex: true}
-         , info: false
-         , sDom: 't<plf>'
-         , columns: [
-         { width: "1%", orderable: false}
-         , { width: "1%", orderable: false}
-         , { width: "1%"}
-         <%= raw hide_things ? '' : ', { width: "1%"}' %>
-         , null
-         ]
-         , order: [[ 2, "desc"], [3, "asc"]<%= raw hide_things ? '' : ', [4, "asc"]'%>]
-         });
+
+         $(document).ready( function ()
+         {
+            var tableId = "list_<%= list_counter %>";
+            global_table_settings[tableId] = { hidden_status: <%= hide_things ? "true" : "false" %> };
+
+            var table = $('#' + tableId).DataTable({
+               paging: false
+               , search: {regex: true}
+               , info: false
+               , sDom: 't<plf>'
+               , columns: [
+               { width: "1%", orderable: false}
+               , { width: "1%", orderable: false}
+               , { width: "1%"}
+               <%= raw hide_things ? '' : ', { width: "1%" }' %>
+               , null
+               ]
+               , order: [[ 2, "desc"], [3, "asc"]<%= raw hide_things ? '' : ', [4, "asc"]'%>]
+            });
+
+            $("#table_<%= list_counter %>").show();
+            $("#arrow-down_<%= list_counter %>").show();
+            $("#arrow-right_<%= list_counter %>").hide();
+            $("#head_<%= list_counter %>").click(function()
+            {
+               $("#table_<%= list_counter %>").slideToggle("fast");
+               $(document).find("#arrow-right_<%= list_counter %>, #arrow-down_<%= list_counter %>").toggle();
+            });
+
+            $("#show_gone_items").change(function()
+            {
+               table.draw();
+            });
          } );
+         
       </script>
    <% end %>
-   <script>
-      $(document).ready(function(){
-         $("#table_<%= list_counter %>").show();
-         $("#arrow-down_<%= list_counter %>").show();
-         $("#arrow-right_<%= list_counter %>").hide();
-         $("#head_<%= list_counter %>").click(function()
-         {
-            $("#table_<%= list_counter %>").slideToggle("fast");
-            $(document).find("#arrow-right_<%= list_counter %>, #arrow-down_<%= list_counter %>").toggle();
-         });
-      });
-   </script>
 </div>

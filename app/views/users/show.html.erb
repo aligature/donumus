@@ -1,5 +1,10 @@
 <% view_family = Family.view_family(session) %>
 <% view_user = User.view_user(session) %>
+<% own_list = view_user == current_user %>
+
+<script>
+   var global_table_settings = [];
+</script>
 
 <ol class="breadcrumb">
    <li><%= link_to current_user.name, user_path(current_user) %></li>
@@ -11,10 +16,28 @@
 
 <div class="panel panel-primary">
    <div class="panel-heading">
-      <h2 class="panel-title">lists</h2>
+      <h2 class="panel-title">lists<%= !own_list ? raw(' | <input id="show_gone_items" type="checkbox"> show gone items</h2>') : '' %>
    </div>
    <div class="panel-body">
       <%= render @lists %>
    </div>
 </div>
 
+<script>
+
+   $.fn.dataTable.ext.search.push(
+   function( settings, data, dataIndex ) {
+      table_settings = global_table_settings[settings.sTableId]
+      table_hidden_status = table_settings ? table_settings.hidden_status : false;
+
+      if(table_hidden_status) return true;
+
+      var show_gone = $('#show_gone_items')[0].checked;
+      var status = data[3];
+      var not_gone = status.indexOf("gone (") == -1;
+
+      return not_gone || show_gone;
+   }
+   );
+
+</script>
