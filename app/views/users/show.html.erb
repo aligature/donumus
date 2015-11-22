@@ -16,7 +16,7 @@
 
 <div class="panel panel-primary">
    <div class="panel-heading">
-      <h2 class="panel-title">lists<%= !own_list ? raw(' | <input id="show_gone_items" type="checkbox"> show gone items</h2>') : '' %>
+      <h2 class="panel-title">lists<%= !own_list ? raw(' | <input id="show_gone_items" type="checkbox" checked> show gone items</h2>') : '' %>
    </div>
    <div class="panel-body">
       <%= render @lists %>
