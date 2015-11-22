@@ -19,7 +19,9 @@ gem 'coffee-rails'
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+# specify 4.0.4 (jquery 1.11.2) because 4.0.5 (jquery 1.11.3) has bug against jquery datatables 1.10.3
+# https://github.com/rails/jquery-rails/blob/master/VERSIONS.md
+gem 'jquery-rails', '4.0.4'
 gem 'jquery-datatables-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
