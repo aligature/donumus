@@ -14,8 +14,8 @@ class Status < ActiveRecord::Base
       statuses.empty? ? nil : statuses.last
    end
 
-   def self.label(status)
-      labels = { "available" => "", "looking" => "looking", "partially_gone" => "partial", "gone" => "gone"}
+   def self.label(status, include_available = false)
+      labels = { "available" => include_available ? "available" : "", "looking" => "looking", "partially_gone" => "partial", "gone" => "gone"}
       return labels[status]
    end
 

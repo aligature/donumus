@@ -37,3 +37,7 @@ config/initializers/secret_token.rb
 
 # vim swap files
 *.swp
+
+# precompiled assets
+/public/assets/*
+run.sh

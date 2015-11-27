@@ -7,20 +7,20 @@
       color = (not hide_things and gift.updated?(current_user)) ? "info" : ""
    %>
    <tr class="<%= color %>">
-      <td><%= link_to image_tag('edit.png', alt: "edit", height: 16), edit_gift_path(gift.id) %></td>
-      <td><%= link_to image_tag('delete.png', alt: "delete", height: 16),
+      <td><%= link_to image_tag('edit.png', alt: "edit this item", height: 16), edit_gift_path(gift.id) %></td>
+      <td><%= link_to image_tag('delete.png', alt: "delete this item", height: 16),
          { controller: :gifts, action: :destroy, id: gift.id },
          method: :delete,
          data: { confirm: 'do you really want to delete this?' } %></td>
       <td><%=raw gift.starred? ? "&#9733;" : "" %></td>
       <% if !hide_things %>
          <td class="nowrap" data-sort="<%= summary_level %>">
-            <%= link_to image_tag('edit.png', alt: "edit", height: 16), statuses_path(:gift_id => gift.id) %> <%= raw summary_label %>
+            <%= link_to image_tag('edit.png', alt: "view or add statuses", height: 16), statuses_path(:gift_id => gift.id) %> <%= raw summary_label %>
          </td>
       <% end %>
       <td>
          <% if gift.hidden %>
-            <%= image_tag('hidden.png', alt: "hidden", height: 16) %>
+            <%= image_tag('hidden.png', alt: "this item is hidden from this person", height: 16) %>
          <% end %>
          <%= gift.description %>
          <% if gift.link? %>

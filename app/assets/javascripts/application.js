@@ -10,7 +10,6 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require turbolinks
 //= require jquery
 //= require jquery_ujs
 //= require local_time
@@ -20,4 +19,11 @@
 $(document).ready(function() {
      /* Activating Best In Place */
      jQuery(".best_in_place").best_in_place()
+});
+
+$(document).ready(function() {
+   $('img').each( function() {
+      var o = $(this);
+      if( ! o.attr('title') && o.attr('alt') ) o.attr('title', o.attr('alt') );
+   });
 });

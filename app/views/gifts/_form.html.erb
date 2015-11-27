@@ -4,6 +4,7 @@
 <div class="form">
    <%= form_for @gift do |f| %>
       <%= f.hidden_field :list_id, :value => @gift.list_id %>
+      <%= f.hidden_field :added_by_user_id, :value => current_user.id %>
 
       <div class="checkbox">
          <h3>

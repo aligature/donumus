@@ -1,35 +1,29 @@
-<% view_user = User.view_user(session) %>
-<h4>
-<strong>user:</strong>
-<%= view_user.name %>
-<br>
+<%
+   status = Status.new()
+%>
 
-<strong>gift:</strong>
-<%= Gift.find(@status.gift_id).description %>
-</h4>
-<br><br>
-
-<div class="form">
-<%= form_for @status do |f| %>
-   <%= f.hidden_field :gift_id, :value => @status.gift_id %>
+<div class="form form-inline">
+<%= form_for status do |f| %>
+   <%= f.hidden_field :gift_id, :value => @gift.id %>
    <%= f.hidden_field :added_by_user_id, :value => current_user.id %>
 
    <div class="form-group">
-      <div class="input-group input-group-lg">
+      <div class="input-group input-group">
          <span class="input-group-addon">status</span>
-         <%= f.select :status, options_for_select(@statuses.collect { |s| [s[0].humanize, s[0]] }, selected: @status.status), {}, {:class => "form-control"} %>
+         <% options = Status.statuses.select{|s| s != 'available' }.map { |s| [s[0].humanize, s[0]] } %>
+         <%= f.select :status, options_for_select(options, selected: status.status), {}, {:class => "form-control"} %>
       </div>
    </div>
 
    <div class="form-group">
-      <div class="input-group input-group-lg">
+      <div class="input-group input-group">
          <span class="input-group-addon">note</span>
          <%= f.text_field :note, {:class => "form-control"} %>
       </div>
    </div>
 
    <div class="input-group">
-      <%= f.submit :class => "btn-lg btn-success" %>
+      <%= f.submit :class => "btn btn-success" %>
    </div>
 <% end %>
 </div>

@@ -8,7 +8,10 @@ class Family < ActiveRecord::Base
       session[:view_family_id] = id
    end
 
-   def self.view_family(session)
+   def self.view_family(session, user = nil)
+      if not session[:view_family_id]
+         return user.families()[0]
+      end
       return find(session[:view_family_id])
    end
 

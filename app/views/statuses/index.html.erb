@@ -9,22 +9,23 @@
    <li class="active">status</li>
 </ol>
 
-<p>
-<%= link_to "back to " + view_user.name, user_path(view_user), :class => "btn btn-success btn" %>
-</p>
-
 <div class="panel panel-primary">
-   <div>
-      <div class="input-group">
-         <span class="input-group-addon">gift description:</span>
-         <input type="text" class="form-control" value="<%= @gift.description %>" readonly>
-      </div>
+   <div class="input-group">
+      <span class="input-group-addon">gift description:</span>
+      <input type="text" class="form-control" value="<%= @gift.description %>" readonly>
    </div>
 </div>
+
+<div class="panel panel-primary">
+   <div class="panel-heading"><h3 class="panel-title">add status</h3></div>
+   <div class="panel-body">
+      <%= render partial: 'form', locals: {_target: statuses_path, _method: :post} %>
+   </div>
+</div>
+
 <div class="panel panel-danger">
    <div class="panel-heading">
-      <h4>
-         <%= link_to "add", new_status_path(:gift_id => @gift.id), :class => "btn btn-success" %>
+      <h4 class="panel-title">
          status
       </h4>
    </div>
@@ -34,11 +35,16 @@
             <tr><td><%= image_tag('delete.png', alt: "delete", height: 16) %></td><td>status</td><td>note</td><td class="nowrap">added by</td><td>when</td></tr>
          </thead>
          <tbody>
+            <%= render @gift.added_status %>
             <%= render @statuses %>
          </tbody>
       </table>
    </div>
 </div>
+
+<p>
+<%= link_to "back to " + view_user.name, user_path(view_user), :class => "btn btn-success btn" %>
+</p>
 
 <script>
    $(document).ready( function () {
