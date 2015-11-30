@@ -1,5 +1,8 @@
 ActiveAdmin.register User do
 
+   action_item :new, only: :show do
+     link_to 'New User', new_admin_user_path
+   end
 
    # See permitted parameters documentation:
    # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
