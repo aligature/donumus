@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
    has_many :addresses
    has_many :emails
    has_many :phone_numbers
+   has_many :pollyannas, foreign_key: "giver_id"
 
    def save_as_view(session)
       session[:view_user_id] = id()

@@ -16,7 +16,18 @@
 
 <strong>note (<%= link_to "edit", edit_user_note_path(@note) %>):</strong>
 <%= simple_format(@note.to_s) %>
+
+<% if view_user.id == current_user.id %>
+<strong>pollyannas:</strong>
 <br>
+<% view_user.pollyannas.each do |pollyanna| %>
+   <% if pollyanna.created_at.year == Time.now.year %>
+      <%= "%s %s: %s" % [pollyanna.created_at.year, pollyanna.name, pollyanna.receiver.name] %>
+      <br>
+   <% end %>
+<% end %>
+<br>
+<% end %>
 
 <strong>e-mail:</strong>
 <br>
