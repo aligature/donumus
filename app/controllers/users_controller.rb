@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
 
    def show
-      @user = User.find(params[:id])
+      if(params[:id] == "me")
+         @user = current_user
+      else
+         @user = User.find(params[:id])
+      end
       maybe_redirect(@user.check_permissions(current_user))
       @user.save_as_view(session)
       @lists = @user.lists
