@@ -20,7 +20,11 @@ class User < ActiveRecord::Base
    end
 
    def self.view_user(session)
-      return find(session[:view_user_id])
+      if session[:view_user_id]
+         return find(session[:view_user_id])
+      else
+         return nil
+      end
    end
 
    def self.find_for_google_oauth2(access_token, signed_in_resource=nil)

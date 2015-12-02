@@ -1,11 +1,8 @@
-<% view_family = Family.view_family(session) %>
-<% view_user = User.view_user(session) %>
-
 <ol class="breadcrumb">
-   <li><%= link_to current_user.name, user_path(current_user) %></li>
+   <li><%= me_breadcrumb() %></li>
    <li><%= link_to "my families", families_path %></li>
-   <li><%= link_to view_family.name, family_path(view_family) %></li>
-   <li><%= user_breadcrumb(view_user, current_user, true) %></li>
+   <li><%= link_to @view_family.name, family_path(@view_family) %></li>
+   <li><%= user_breadcrumb(@view_user, current_user, true) %></li>
    <li class="active">status</li>
 </ol>
 
@@ -43,7 +40,7 @@
 </div>
 
 <p>
-<%= link_to "back to " + view_user.name, user_path(view_user), :class => "btn btn-success btn" %>
+<%= link_to "back to " + @view_user.name, user_path(@view_user), :class => "btn btn-success btn" %>
 </p>
 
 <script>

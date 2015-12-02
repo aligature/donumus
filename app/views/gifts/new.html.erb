@@ -1,5 +1,3 @@
-<% view_user = User.view_user(session) %>
-
 <% if @gift and @gift.errors.any? %>
    <div id="error_explanation">
       <h2><%= pluralize(@gift.errors.count, "error") %> prohibited this gift from being saved:</h2>
@@ -12,7 +10,7 @@
 <% end %>
 
 <div class="panel panel-primary">
-   <div class="panel-heading"><h2>new gift <%= link_to "back to " + view_user.name, user_path(view_user), :class => "btn btn-success btn" %></h2></div>
+   <div class="panel-heading"><h2>new gift <%= link_to "back to " + @view_user.name, user_path(@view_user), :class => "btn btn-success btn" %></h2></div>
    <div class="panel-body">
       <%= render partial: 'form', locals: {_target: gifts_path, _method: :post} %>
    </div>
