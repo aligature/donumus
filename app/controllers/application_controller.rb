@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
 
    def default_views
       @view_user = User.view_user(session)
-      @view_family = Family.view_family(session, @view_user)
+      @view_family = Family.view_family(session, current_user)
    end
 
    def new_session_path(scope)
