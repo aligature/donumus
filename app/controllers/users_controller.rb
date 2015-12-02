@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
 
    def show
+      if not current_user
+         maybe_redirect()
+         return
+      end
+
       if(params[:id] == "me")
          @view_user = current_user
       else

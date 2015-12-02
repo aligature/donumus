@@ -46,7 +46,7 @@ class ApplicationController < ActionController::Base
       current_user
    end
 
-   def maybe_redirect(ok)
+   def maybe_redirect(ok = nil)
       if !ok
          redirect_to root_path
       end
