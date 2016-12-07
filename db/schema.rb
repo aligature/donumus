@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151130012036) do
+ActiveRecord::Schema.define(version: 20161207031824) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "address",    limit: 255
@@ -144,6 +144,8 @@ ActiveRecord::Schema.define(version: 20151130012036) do
     t.datetime "last_session_time"
     t.datetime "current_session_time"
     t.datetime "last_change_time"
+    t.datetime "remember_created_at"
+    t.string   "remember_token"
   end
 
   add_index "users", ["username"], name: "index_users_on_username", unique: true

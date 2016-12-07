@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
    include LastChanged
 
    # Include default devise modules. Others available are:
-   devise :trackable, :omniauthable, :omniauth_providers => [:google_oauth2]
+   devise :trackable, :rememberable, :omniauthable, :omniauth_providers => [:google_oauth2]
 
 
    has_many :list_users, :class_name => 'ListUser'
@@ -72,6 +72,10 @@ class User < ActiveRecord::Base
       families.each do |family|
          family.set_last_changed
       end
+   end
+
+   def remember_me
+      true
    end
 
 end
