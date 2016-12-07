@@ -1,12 +1,10 @@
 <% if @gift and @gift.errors.any? %>
-   <div id="error_explanation">
-      <h2><%= pluralize(@gift.errors.count, "error") %> prohibited this gift from being saved:</h2>
-      <ul>
-         <% @gift.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-         <% end %>
-      </ul>
-   </div>
+         <ul class="list-group">
+            <li class="list-group-item list-group-item-danger">validation errors</li>
+            <% @gift.errors.full_messages.each do |msg| %>
+               <li class="list-group-item"><%= msg %></li>
+            <% end %>
+         </ul>
 <% end %>
 
 <div class="panel panel-primary">
@@ -15,5 +13,3 @@
       <%= render partial: 'form', locals: {_target: gifts_path, _method: :post} %>
    </div>
 </div>
-
-
