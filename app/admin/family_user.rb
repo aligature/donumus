@@ -1,5 +1,9 @@
 ActiveAdmin.register FamilyUser do
 
+   action_item :new, only: :show do
+     link_to 'New Family User', new_admin_family_user_path
+   end
+
    index do
       selectable_column
       column :id

@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
    include LastChanged
 
    # Include default devise modules. Others available are:
-   devise :trackable, :omniauthable, :omniauth_providers => [:google_oauth2]
+   devise :trackable, :rememberable, :omniauthable, :omniauth_providers => [:google_oauth2]
 
 
    has_many :list_users, :class_name => 'ListUser'
@@ -13,13 +13,18 @@ class User < ActiveRecord::Base
    has_many :addresses
    has_many :emails
    has_many :phone_numbers
+   has_many :pollyannas, foreign_key: "giver_id"
 
    def save_as_view(session)
       session[:view_user_id] = id()
    end
 
    def self.view_user(session)
-      return find(session[:view_user_id])
+      if session[:view_user_id]
+         return find(session[:view_user_id])
+      else
+         return nil
+      end
    end
 
    def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
@@ -67,6 +72,10 @@ class User < ActiveRecord::Base
       families.each do |family|
          family.set_last_changed
       end
+   end
+
+   def remember_me
+      true
    end
 
 end

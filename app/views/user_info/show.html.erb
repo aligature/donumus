@@ -1,11 +1,8 @@
-<% view_family = Family.view_family(session) %>
-<% view_user = User.view_user(session) %>
-
 <ol class="breadcrumb">
-   <li><%= link_to current_user.name, user_path(current_user) %></li>
+   <li><%= me_breadcrumb() %></li>
    <li><%= link_to "my families", families_path %></li>
-   <li><%= link_to view_family.name, family_path(view_family) %></li>
-   <li><%= user_breadcrumb(view_user, current_user, true) %></li>
+   <li><%= link_to @view_family.name, family_path(@view_family) %></li>
+   <li><%= user_breadcrumb(@view_user, current_user, true) %></li>
    <li class="active">user info</li>
 </ol>
 
@@ -16,7 +13,18 @@
 
 <strong>note (<%= link_to "edit", edit_user_note_path(@note) %>):</strong>
 <%= simple_format(@note.to_s) %>
+
+<% if @view_user.id == current_user.id %>
+<strong>pollyannas:</strong>
 <br>
+<% @view_user.pollyannas.each do |pollyanna| %>
+   <% if pollyanna.created_at.year == Time.now.year %>
+      <%= "%s %s: %s" % [pollyanna.created_at.year, pollyanna.name, pollyanna.receiver.name] %>
+      <br>
+   <% end %>
+<% end %>
+<br>
+<% end %>
 
 <strong>e-mail:</strong>
 <br>
@@ -42,4 +50,4 @@
 <% end %>
 <br>
 
-<%= link_to "back to " + view_user.name, user_path(view_user), :class => "btn btn-success btn-lg" %>
+<%= link_to "back to " + @view_user.name, user_path(@view_user), :class => "btn btn-success btn-lg" %>

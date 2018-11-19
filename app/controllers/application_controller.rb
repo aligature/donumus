@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
    protect_from_forgery with: :exception
 
    before_filter :check_session_times
+   before_filter :default_views
 
    SessionTimeout = 60 * 60
    #SessionTimeout = 10
@@ -20,6 +21,11 @@ class ApplicationController < ActionController::Base
          end
 
       end
+   end
+
+   def default_views
+      @view_user = User.view_user(session)
+      @view_family = Family.view_family(session, current_user)
    end
 
    def new_session_path(scope)
@@ -40,7 +46,7 @@ class ApplicationController < ActionController::Base
       current_user
    end
 
-   def maybe_redirect(ok)
+   def maybe_redirect(ok = nil)
       if !ok
          redirect_to root_path
       end

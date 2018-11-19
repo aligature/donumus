@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Wishlist</title>
+  <title>donum(us)</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -25,6 +25,36 @@
   <!-- Icon made by <a href="http://www.icomoon.io" title="Icomoon">Icomoon</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a> -->
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!--link rel="apple-touch-icon" href="assets/apple-touch-icon.png"-->
+  <%= favicon_link_tag 'apple-touch-icon-opaque.png', rel: 'apple-touch-icon' %>
+
+  <script>
+     // Mobile Safari in standalone mode
+     if(("standalone" in window.navigator) && window.navigator.standalone){
+
+        // If you want to prevent remote links in standalone web apps opening Mobile Safari, change 'remotes' to true
+        var noddy, remotes = false;
+
+        document.addEventListener('click', function(event) {
+
+           noddy = event.target;
+
+           // Bubble up until we hit link or top HTML element. Warning: BODY element is not compulsory so better to stop on HTML
+           while(noddy.nodeName !== "A" && noddy.nodeName !== "HTML") {
+              noddy = noddy.parentNode;
+           }
+
+           if (noddy.nodeName === 'A' && !event.defaultPrevented) {
+              if ('href' in noddy && noddy.target !== '_blank') {
+                 document.location.href = noddy.href;
+                 event.preventDefault();
+              }
+           }
+
+        },false);
+     }
+  </script>
 
 </head>
 
@@ -33,7 +63,7 @@
       <div class="row">
          <div class="col-sm-6 col-xs-12">
             <h2 class="green">
-               <%= link_to "wishlist", families_path %><%= link_to image_tag('refresh.png', alt: "refresh", height: 50), request.path %>
+               <%= link_to "donum(us)", families_path %><%= link_to image_tag('refresh.png', alt: "refresh", height: 50), request.path %>
             </h2>
          </div>
          <div class="col-sm-6 col-xs-12 text-right">

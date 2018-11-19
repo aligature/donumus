@@ -8,10 +8,10 @@ class FamiliesController < ApplicationController
    end
 
    def show
-      @family = Family.find(params[:id])
-      maybe_redirect(@family.check_permissions(current_user))
-      @family.save_as_view(session)
-      @members = @family.users.order(:birthday)
+      @view_family = Family.find(params[:id])
+      maybe_redirect(@view_family.check_permissions(current_user))
+      @view_family.save_as_view(session)
+      @members = @view_family.users.order(:birthday)
    end
 
 end

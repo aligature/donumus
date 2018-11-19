@@ -23,5 +23,16 @@ module Wishlist
 
       config.i18n.enforce_available_locales = true
 
+      config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
+
    end
+end
+
+def has_error?( model_class, attribute )
+   model_class.errors[attribute].size > 0
+end
+
+def error_for( model_class, attribute, err_class )
+   return err_class if has_error? model_class, attribute
+   nil
 end

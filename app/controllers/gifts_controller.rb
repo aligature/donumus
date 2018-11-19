@@ -6,7 +6,8 @@ class GiftsController < ApplicationController
    end
 
    def create
-      if @gift = Gift.create(gift_params)
+      @gift = Gift.create(gift_params)
+      if @gift.valid?
          redirect_to User.view_user(session)
       else
          render :new
