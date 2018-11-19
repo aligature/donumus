@@ -21,7 +21,7 @@ gem 'coffee-rails'
 # Use jquery as the JavaScript library
 # specify 4.0.4 (jquery 1.11.2) because 4.0.5 (jquery 1.11.3) has bug against jquery datatables 1.10.3
 # https://github.com/rails/jquery-rails/blob/master/VERSIONS.md
-gem 'jquery-rails', '4.0.4'
+gem 'jquery-rails'
 gem 'jquery-datatables-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -31,15 +31,15 @@ gem 'jquery-turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'
 
-group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
-end
+#group :doc do
+#  # bundle exec rake doc:rails generates the API under doc/api.
+#  gem 'sdoc', require: false
+#end
 
 gem 'devise'
 gem 'omniauth-google-oauth2'
 
-gem 'activeadmin', github: 'activeadmin'
+gem 'activeadmin'
 
 gem 'railties'
 
