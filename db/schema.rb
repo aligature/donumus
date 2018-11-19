@@ -36,32 +36,11 @@ ActiveRecord::Schema.define(version: 20161207031824) do
     t.datetime "last_change_time"
   end
 
-  create_table "family_family_groups", force: :cascade do |t|
-    t.integer  "family_group_id"
-    t.integer  "family_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "family_group_users", force: :cascade do |t|
-    t.integer  "family_group_id"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "family_groups", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "family_users", force: :cascade do |t|
     t.integer  "family_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "hidden"
   end
 
   add_index "family_users", ["family_id", "user_id"], name: "index_family_users_on_family_id_and_user_id", unique: true
