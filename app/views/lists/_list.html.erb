@@ -3,8 +3,6 @@
 <div class="panel panel-<%= color %>">
    <div class="panel-heading" id="head_<%= list_counter %>">
       <h4>
-         <div style="display:inline;" id="arrow-right_<%= list_counter %>">&#9654;</div>
-         <div style="display:inline;" id="arrow-down_<%= list_counter %>">&#9660;</div>
          <div style="display:inline;">
             <%= link_to "add", new_gift_path(:list_id => list.id), :class => "btn btn-success" %>
             <%= list.personal? ? "personal" : list.name %>
@@ -54,11 +52,6 @@
             $("#table_<%= list_counter %>").show();
             $("#arrow-down_<%= list_counter %>").show();
             $("#arrow-right_<%= list_counter %>").hide();
-            $("#head_<%= list_counter %>").click(function()
-            {
-               $("#table_<%= list_counter %>").slideToggle("fast");
-               $(document).find("#arrow-right_<%= list_counter %>, #arrow-down_<%= list_counter %>").toggle();
-            });
 
             $("#show_gone_items").change(function()
             {
