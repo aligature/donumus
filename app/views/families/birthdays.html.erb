@@ -15,7 +15,7 @@
       <div class="btn-group-vertical">
          <% @members.sort_by(&:birthday_day).each do |member| %>
             <% color = member.updated?(current_user) ? "info" : "success" %>
-            <%= link_to member.birthday_day.strftime("%A, %m/%d/%Y") + " - " + member.name, user_path(member.id), class: "btn btn-%s btn-lg" % color %>
+            <%= link_to member.birthday_day.strftime("%a, %m/%d/%Y") + " - " + member.name, user_path(member.id), class: "btn btn-%s btn-lg" % color %>
          <% end %>
       </div>
    </div>
