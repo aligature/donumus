@@ -1,4 +1,7 @@
 Wishlist::Application.routes.draw do
+  get 'about/versions'
+  get 'about/help'
+
   #devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
