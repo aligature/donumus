@@ -40,3 +40,32 @@
       </div>
    <% end %>
 </div>
+
+<script>
+$('#description').on('paste', function () {
+   var element = this;
+   setTimeout(function ()
+   {
+      var text = $(element).val();
+      var parts = text.split(" ");
+      if(parts.length >= 2)
+      {
+         var regex = /https?:\/\/[\-A-Za-z0-9+&@#\/%?=~_|$!:,.;]*/g;
+         var new_parts = []
+         for(part in parts)
+         {
+            part = parts[part]
+            if(part.match(regex))
+            {
+               $('#link').val(part);
+            }
+            else
+            {
+               new_parts.push(part);
+            }
+         }
+         $(element).val(new_parts.join(" "))
+      }
+   }, 4);
+});
+</script>
