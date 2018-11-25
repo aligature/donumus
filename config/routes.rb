@@ -23,6 +23,8 @@ Wishlist::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'families#index'
 
+  get 'families/:id/birthdays' => 'families#birthdays'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

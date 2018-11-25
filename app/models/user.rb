@@ -50,6 +50,14 @@ class User < ActiveRecord::Base
       name.split(" ")[0]
    end
 
+   def birthday_day
+      today = Date.today
+      birthday_calendar_year = Date.new(today.year, birthday.month, birthday.day)
+      if birthday_calendar_year < today
+         birthday_calendar_year = Date.new(today.year + 1, birthday.month, birthday.day)
+      end
+      birthday_calendar_year
+   end
 
    def email_required?
       false

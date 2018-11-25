@@ -7,6 +7,14 @@
          </ul>
 <% end %>
 
+<ol class="breadcrumb">
+   <li><%= me_breadcrumb() %></li>
+   <li><%= link_to "my families", families_path %></li>
+   <li><%= link_to @view_family.name, family_path(@view_family) %></li>
+   <li class="active"><%= user_breadcrumb(@view_user, current_user, true) %></li>
+   <li><%= link_to "user info", user_info_path(@view_user) %></li>
+</ol>
+
 <div class="panel panel-primary">
    <div class="panel-heading"><h2>new gift <%= link_to "back to " + @view_user.first_name(), user_path(@view_user), :class => "btn btn-success" %></h2></div>
    <div class="panel-body">

@@ -1,21 +1,21 @@
 <ol class="breadcrumb">
    <li><%= me_breadcrumb() %></li>
    <li><%= link_to "my families", families_path %></li>
-   <li class="active"><%= @view_family.name %></li>
+   <li class="active"><%= link_to @view_family.name, @view_family %></li>
 </ol>
 
 <div class="panel panel-primary">
    <div class="panel-heading clearfix">
       <h2 class="panel-title pull-left">family members</h2>
       <div class="btn-group pull-right">
-         <%= link_to "birthday view", { :controller => :families, :action => :birthdays }, :class => "btn btn-default" %>
+         <%= link_to "age view", { :controller => :families, :action => :show }, :class => "btn btn-default" %>
       </div>
    </div>
    <div class="panel-body">
       <div class="btn-group-vertical">
-         <% @members.each do |member| %>
+         <% @members.sort_by(&:birthday_day).each do |member| %>
             <% color = member.updated?(current_user) ? "info" : "success" %>
-            <%= link_to member.name, user_path(member.id), class: "btn btn-%s btn-lg" % color %>
+            <%= link_to member.birthday_day.strftime("%A, %m/%d/%Y") + " - " + member.name, user_path(member.id), class: "btn btn-%s btn-lg" % color %>
          <% end %>
       </div>
    </div>
