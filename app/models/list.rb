@@ -30,4 +30,8 @@ class List < ActiveRecord::Base
       end
    end
 
+   def is_restricted?(user)
+      users.include? user or (user.is_restricted? and users.any? { |list_user| list_user.is_restricted? })
+   end
+
 end

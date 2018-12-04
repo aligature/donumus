@@ -59,6 +59,14 @@ class User < ActiveRecord::Base
       birthday_calendar_year
    end
 
+   def age
+      ((Date.today - birthday) / 365).floor
+   end
+
+   def is_restricted?
+      age <= 16
+   end
+
    def email_required?
       false
    end
