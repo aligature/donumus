@@ -1,4 +1,5 @@
 class UserInfoController < ApplicationController
+   before_action :check_view_user
 
    def show
       id = params[:id]

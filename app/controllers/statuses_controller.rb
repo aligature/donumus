@@ -1,4 +1,5 @@
 class StatusesController < ApplicationController
+   before_action :check_view_user
    def new
       @statuses = Status.statuses
       gift = Gift.find(params[:gift_id])

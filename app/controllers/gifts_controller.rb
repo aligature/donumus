@@ -1,4 +1,6 @@
 class GiftsController < ApplicationController
+   before_action :check_view_user
+
    def new
       list = List.find(params[:list_id])
       maybe_redirect(list.check_permissions(current_user))
