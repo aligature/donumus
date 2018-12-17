@@ -48,16 +48,9 @@ gem 'thin'
 gem 'local_time'
 gem 'best_in_place'
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '>= 3.1.2'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
-
 gem 'quiet_assets'
+
+group :development, :test do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug'
+end
