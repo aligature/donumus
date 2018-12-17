@@ -10,8 +10,15 @@
    <div class="form-group">
       <div class="input-group input-group">
          <span class="input-group-addon">status</span>
-         <% options = Status.statuses.select{|s| s != 'available' }.map { |s| [s[0].humanize, s[0]] } %>
-         <%= f.select :status, options_for_select(options, selected: status.status), {}, {:class => "form-control"} %>
+         <div class="btn-group btn-group-toggle" data-toggle="buttons"> 
+            <%= get_label = Proc.new{ |status_arr| Status.label(status_arr[0]) }
+				active_value = Status.form_statuses[-1][0]
+            f.collection_radio_buttons(:status, Status.form_statuses, :first, get_label, { checked: active_value }) { |b|
+					active_class = if b.value == active_value then " active" else "" end
+               b.label(class: "btn btn-primary" + active_class) { b.radio_button + b.text }
+            }
+         %>
+         </div>
       </div>
    </div>
 

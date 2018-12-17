@@ -7,7 +7,9 @@ class Status < ActiveRecord::Base
    after_save :set_last_changed
    before_destroy :set_last_changed
 
-   enum(status: { available: 0, looking: 10, partially_gone: 20, gone: 30})
+   validates :status, presence: true
+
+   enum status: { available: 0, looking: 10, partially_gone: 20, gone: 30 }
 
    def self.summary(statuses)
       statuses = statuses.sort_by {|status| self.statuses[status.status]}
@@ -17,6 +19,10 @@ class Status < ActiveRecord::Base
    def self.label(status, include_available = false)
       labels = { "available" => include_available ? "available" : "", "looking" => "looking", "partially_gone" => "partial", "gone" => "gone"}
       return labels[status]
+   end
+
+   def self.form_statuses
+      return statuses.drop(1)
    end
 
    def to_s

@@ -1,5 +1,7 @@
 class StatusesController < ApplicationController
    before_action :check_view_user
+   helper_method :status_options
+
    def new
       @statuses = Status.statuses
       gift = Gift.find(params[:gift_id])
@@ -8,16 +10,16 @@ class StatusesController < ApplicationController
    end
 
    def index
-      @gift = Gift.find(params[:gift_id])
-      maybe_redirect(@gift.check_permissions(current_user))
-      @statuses = @gift.statuses
+      get_for_gift(params[:gift_id])
    end
 
    def create
-      if @status = Status.create(status_params)
+      @status = Status.create(status_params)
+      if @status.valid?
          redirect_to User.view_user(session)
       else
-         render :new
+         get_for_gift(params[:status][:gift_id])
+         render :index
       end
    end
 
@@ -46,8 +48,19 @@ class StatusesController < ApplicationController
       redirect_to User.view_user(session)
    end
 
+   def status_options
+      Status.statuses.select{|s| s != 'available' }.map { |s| [s[0].humanize, s[0]] }
+   end
+
    private
    def status_params
       params.require(:status).permit(:status, :note, :gift_id, :added_by_user_id)
+   end
+
+   private
+   def get_for_gift(gift_id)
+      @gift = Gift.find(gift_id)
+      maybe_redirect(@gift.check_permissions(current_user))
+      @statuses = @gift.statuses
    end
 end
