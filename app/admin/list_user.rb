@@ -8,10 +8,10 @@ ActiveAdmin.register ListUser do
       selectable_column
       column :id
       column "List" do |fu|
-         usr = "%s (%d)" % [List.find(fu.list_id).name, fu.list_id]
+         fu.list_id ? "%s (%d)" % [List.find(fu.list_id).name, fu.list_id] : "none"
       end
       column "User" do |fu|
-         usr = "%s (%d)" % [User.find(fu.user_id).name, fu.user_id]
+         fu.user_id ? "%s (%d)" % [User.find(fu.user_id).name, fu.user_id] : "none"
       end
       actions
    end
