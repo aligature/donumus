@@ -16,14 +16,22 @@
 //= require jquery.purr
 //= require best_in_place
 
-$(document).ready(function() {
+// Use both document.ready and turbolinks:load for compatibility
+function initializeApp() {
      /* Activating Best In Place */
-     jQuery(".best_in_place").best_in_place()
-});
+     if (typeof jQuery !== 'undefined' && jQuery.fn.best_in_place) {
+        jQuery(".best_in_place").best_in_place();
+     }
+     
+     // Set image titles from alt text
+     $('img').each( function() {
+        var o = $(this);
+        if( ! o.attr('title') && o.attr('alt') ) o.attr('title', o.attr('alt') );
+     });
+}
 
-$(document).ready(function() {
-   $('img').each( function() {
-      var o = $(this);
-      if( ! o.attr('title') && o.attr('alt') ) o.attr('title', o.attr('alt') );
-   });
-});
+// Initialize on page load (works without Turbolinks)
+$(document).ready(initializeApp);
+
+// Initialize on Turbolinks page load (works with Turbolinks)
+$(document).on('turbolinks:load', initializeApp);

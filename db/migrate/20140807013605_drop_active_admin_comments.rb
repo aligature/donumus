@@ -1,4 +1,4 @@
-class DropActiveAdminComments < ActiveRecord::Migration
+class DropActiveAdminComments < ActiveRecord::Migration[4.2]
   def change
      remove_index :active_admin_comments, [:namespace]
      remove_index :active_admin_comments, [:author_type, :author_id]

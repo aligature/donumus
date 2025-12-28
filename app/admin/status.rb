@@ -2,6 +2,19 @@ ActiveAdmin.register Status do
 
   permit_params :gift_id, :status, :note, :added_by_user_id
 
+  # Configure filters explicitly to avoid Ransack 4.4.0 errors
+  # Remove auto-generated association filters that cause Ransack 4.4.0 errors
+  remove_filter :gift
+  remove_filter :added_by_user
+  
+  # Add explicit filters for attributes only (no associations)
+  filter :gift_id
+  filter :added_by_user_id
+  filter :status
+  filter :note
+  filter :created_at
+  filter :updated_at
+
    index do
       selectable_column
       column :gift_id

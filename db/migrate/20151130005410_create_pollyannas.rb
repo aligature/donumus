@@ -1,4 +1,4 @@
-class CreatePollyannas < ActiveRecord::Migration
+class CreatePollyannas < ActiveRecord::Migration[4.2]
   def change
     create_table :pollyannas do |t|
       t.timestamps

@@ -1,4 +1,4 @@
-class CreateOrganizedStatus < ActiveRecord::Migration
+class CreateOrganizedStatus < ActiveRecord::Migration[4.2]
   def change
     create_table :statuses do |t|
        t.integer :gift_id

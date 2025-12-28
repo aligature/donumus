@@ -9,4 +9,15 @@ ActiveAdmin.register Family do
   
   permit_params :name
 
+  # Configure filters explicitly to avoid Ransack 4.4.0 errors
+  # Remove auto-generated association filters that cause Ransack 4.4.0 errors
+  remove_filter :family_users
+  remove_filter :users
+  
+  # Add explicit filters for attributes only (no associations)
+  filter :name
+  filter :created_at
+  filter :updated_at
+  filter :last_change_time
+
 end

@@ -29,4 +29,13 @@ class Family < ActiveRecord::Base
       touch :last_change_time
    end
 
+   # Ransack configuration for ActiveAdmin
+   def self.ransackable_associations(auth_object = nil)
+      ["family_users", "users"]
+   end
+
+   def self.ransackable_attributes(auth_object = nil)
+      ["name", "created_at", "updated_at", "last_change_time"]
+   end
+
 end

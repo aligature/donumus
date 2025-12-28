@@ -18,4 +18,14 @@ ActiveAdmin.register FamilyUser do
 
    permit_params :user_id, :family_id
 
+   # Configure filters explicitly to avoid Ransack 4.4.0 errors
+   # Remove auto-generated association filters that cause Ransack 4.4.0 errors
+   remove_filter :family
+   remove_filter :user
+   
+   # Add explicit filters for attributes only
+   filter :family_id, as: :select, collection: -> { Family.all.map { |f| [f.name, f.id] } }
+   filter :user_id, as: :select, collection: -> { User.all.map { |u| [u.name, u.id] } }
+   filter :created_at
+
 end

@@ -18,4 +18,14 @@ ActiveAdmin.register ListUser do
 
    permit_params :list_id, :user_id
 
+   # Configure filters explicitly to avoid Ransack 4.4.0 errors
+   # Remove auto-generated association filters that cause Ransack 4.4.0 errors
+   remove_filter :list
+   remove_filter :user
+   
+   # Add explicit filters for attributes only
+   filter :list_id, as: :select, collection: -> { List.all.map { |l| [l.name, l.id] } }
+   filter :user_id, as: :select, collection: -> { User.all.map { |u| [u.name, u.id] } }
+   filter :created_at
+
 end

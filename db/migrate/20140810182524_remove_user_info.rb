@@ -1,4 +1,4 @@
-class RemoveUserInfo < ActiveRecord::Migration
+class RemoveUserInfo < ActiveRecord::Migration[4.2]
   def change
      drop_table :user_infos
      remove_column :user_notes, :user_info_id, :integer

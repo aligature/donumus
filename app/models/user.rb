@@ -94,4 +94,15 @@ class User < ActiveRecord::Base
       true
    end
 
+   # Ransack configuration for ActiveAdmin
+   # Explicitly allowlist associations that are safe to search
+   def self.ransackable_associations(auth_object = nil)
+      ["list_users", "lists", "family_users", "families", "user_note", "addresses", "emails", "phone_numbers"]
+   end
+
+   # Explicitly allowlist attributes that are safe to search
+   def self.ransackable_attributes(auth_object = nil)
+      ["username", "name", "birthday", "administrator", "created_at", "updated_at", "last_sign_in_at", "sign_in_count"]
+   end
+
 end

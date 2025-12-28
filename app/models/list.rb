@@ -34,4 +34,13 @@ class List < ActiveRecord::Base
       users.include? user or (user.is_restricted? and users.any? { |list_user| list_user.is_restricted? })
    end
 
+   # Ransack configuration for ActiveAdmin
+   def self.ransackable_associations(auth_object = nil)
+      ["list_users", "users", "families", "gifts"]
+   end
+
+   def self.ransackable_attributes(auth_object = nil)
+      ["name", "personal", "created_at", "updated_at", "last_change_time"]
+   end
+
 end

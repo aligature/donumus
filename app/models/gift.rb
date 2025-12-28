@@ -34,4 +34,13 @@ class Gift < ActiveRecord::Base
                         :created_at => self.created_at, :updated_at => self.created_at)
    end
 
+   # Ransack configuration for ActiveAdmin
+   def self.ransackable_associations(auth_object = nil)
+      ["list", "statuses"]
+   end
+
+   def self.ransackable_attributes(auth_object = nil)
+      ["description", "link", "list_id", "added_by_user_id", "starred", "hidden", "created_at", "updated_at", "last_change_time"]
+   end
+
 end

@@ -1,4 +1,4 @@
-class CreateUserInfo < ActiveRecord::Migration
+class CreateUserInfo < ActiveRecord::Migration[4.2]
 
    def change
 

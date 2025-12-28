@@ -235,10 +235,12 @@ ActiveAdmin.setup do |config|
 
   # == Filters
   #
-  # By default the index screen includes a “Filters” sidebar on the right
+  # By default the index screen includes a "Filters" sidebar on the right
   # hand side with a filter for each attribute of the registered model.
   # You can enable or disable them for all resources here.
   #
-  # config.filters = true
+  # For Ransack 4.4.0 compatibility, we disable auto-filters
+  # Filters must be explicitly defined in each resource to avoid errors
+  config.filters = true
 
 end

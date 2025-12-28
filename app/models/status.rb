@@ -37,4 +37,13 @@ class Status < ActiveRecord::Base
       gift.set_last_changed
    end
 
+   # Ransack configuration for ActiveAdmin
+   def self.ransackable_associations(auth_object = nil)
+      ["gift", "added_by_user"]
+   end
+
+   def self.ransackable_attributes(auth_object = nil)
+      ["gift_id", "added_by_user_id", "status", "note", "created_at", "updated_at"]
+   end
+
 end
